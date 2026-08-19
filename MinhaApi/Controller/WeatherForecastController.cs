@@ -79,6 +79,6 @@ namespace MinhaApi.Controller
     {
         public DateTime Date { get; set; }
         public int TemperatureC { get; set; }
-        public string Summary { get; set; }
+        public required string Summary { get; set; }
     }
 }                                                                                        
