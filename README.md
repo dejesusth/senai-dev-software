@@ -37,8 +37,7 @@ Atualmente, o projeto está organizado da seguinte forma:
 MinhaApi/
 ├── Controllers/
 │   ├── ProdutoController.cs
-│   ├── TipoController.cs
-│   └── WeatherForecastController.cs
+│   └── TipoController.cs
 │
 ├── Models/
 │   ├── Produto.cs
