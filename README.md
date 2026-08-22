@@ -7,6 +7,7 @@ O projeto tem como objetivo aplicar, na prática, os conceitos de desenvolviment
 ## Status do Projeto:
 
 🚧 Em Desenvolvimento
+
 A API está sendo construída progressivamente durante as aulas da disciplina.
 
 ## 📚 Sobre o Projeto
