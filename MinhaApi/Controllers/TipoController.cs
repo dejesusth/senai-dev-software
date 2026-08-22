@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/[controller]")]
 public class TipoController : ControllerBase
 {
-    private readonly ITipooService _service;
+    private readonly ITipoService _service;
 
     public TipoController(ITipoService service) => _service = service;
 
@@ -14,7 +14,7 @@ public class TipoController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        var tipos = service.GetAll();
+        var tipos = _service.GetAll();
         return Ok(tipos);
     }
 
@@ -44,7 +44,7 @@ public class TipoController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult Update(int id, [FromBody] Tipo tipo)
         {
-            var atualizado = _service.Update(id, produto);
+            var atualizado = _service.Update(id, tipo);
 
             if (atualizado == null)
                 return NotFound();

@@ -14,11 +14,3 @@ public class Produto
     public bool Ativo { get; set; }
         = true;
 }
-
-public class Tipo
-{
-    public int Id { get; set; }
-
-    public string Nome { get; set; }
-        =string.Empty;
-}
