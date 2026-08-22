@@ -23,21 +23,18 @@ Durante o desenvolvimento da atividade, estão sendo trabalhados conceitos como:
 
 ## 🛠 Tecnologias Utilizadas
 
-- Git
-- Swagger
-- VS Code
-
-### 💻 Linguagens
-
-![C#](https://img.shields.io/badge/C#-A8B9CC?style=for-the-badge&logo=c&logoColor=black)
-![.NET](https://img.shields.io/badge/.NET-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 ### 📁 Estrutura do Projeto
 
 Atualmente, o projeto está organizado da seguinte forma:
 
 MinhaApi/
-│
 ├── Controllers/
 │   ├── ProdutoController.cs
 │   ├── TipoController.cs
@@ -55,13 +52,9 @@ MinhaApi/
 │   ├── IProdutoService.cs
 │   └── ProdutoService.cs
 │
-├── Properties/
-│
-├── MinhaApi.csproj
-├── MinhaApi.http
 ├── Program.cs
-├── appsettings.json
-└── appsettings.Development.json
+├── MinhaApi.csproj
+└── appsettings.json
 
 ### Controllers
 
