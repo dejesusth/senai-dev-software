@@ -90,33 +90,13 @@ Para executar o projeto, é necessário ter instalado:
 Git;
 Uma IDE ou editor de código compatível com C#, como Visual Studio ou Visual Studio Code.
 
-### Executando localmente
-
-Clone o repositório:
-
-git clone https://github.com/dejesusth/senai-dev-software.git
-
-Entre na pasta do projeto:
-
-cd senai-dev-software/MinhaApi
-
-Restaure as dependências:
-
-dotnet restore
-
-Execute a aplicação:
-
-dotnet run
-
-Após iniciar a aplicação, utilize o endereço apresentado no terminal para acessar a API.
-
-📖 Swagger
+### 📖 Swagger
 
 O projeto utiliza Swagger para facilitar a visualização e o teste dos endpoints da API durante o desenvolvimento.
 
 Com a aplicação em execução, o Swagger pode ser acessado pelo endereço disponibilizado pelo projeto.
 
-🔄 Desenvolvimento com Git e GitHub
+### 🔄 Desenvolvimento com Git e GitHub
 
 O código-fonte do projeto é versionado utilizando Git e armazenado no GitHub.
 
