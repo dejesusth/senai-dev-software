@@ -4,45 +4,45 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProdutoController : ControllerBase
+public class TipoController : ControllerBase
 {
-    private readonly IProdutoService _service;
+    private readonly ITipooService _service;
 
-    public ProdutoController(IProdutoService service) => _service = service;
+    public TipoController(ITipoService service) => _service = service;
 
-    // GET /api/produto
+    //GETALL
     [HttpGet]
     public IActionResult GetAll()
     {
-        var produtos = _service.GetAll();
-        return Ok(produtos);
+        var tipos = service.GetAll();
+        return Ok(tipos);
     }
 
-    // GET /api/produto/1
+    //GET
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
-        var produto = _service.GetById(id);
-        if (produto == null)
+        var tipo = _service.GetById(id);
+        if (tipo == null)
             return NotFound();
-        return Ok(produto);
+        return Ok(tipo);
     }
 
-    // POST /api/produto
+    //POST
     [HttpPost]
-    public IActionResult Create([FromBody] Produto produto)
+    public IActionResult Create([FromBody] Tipo tipo)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var criado = _service.Create(produto);
+        var criado = _service.Create(tipo);
 
         return CreatedAtAction(nameof(GetById), new { id = criado.Id }, criado);
     }
 
-    // PUT /api/produto/1
+    //PUT
     [HttpPut("{id}")]
-    public IActionResult Update(int id, [FromBody] Produto produto)
+    public IActionResult Update(int id, [FromBody] Tipo tipo)
         {
             var atualizado = _service.Update(id, produto);
 
@@ -52,7 +52,7 @@ public class ProdutoController : ControllerBase
             return Ok(atualizado);
         }
 
-    // DELETE /api/produto/1
+    //DELETE
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
