@@ -4,7 +4,7 @@ API REST desenvolvida em C# com ASP.NET Core como atividade prática da discipli
 
 O projeto tem como objetivo aplicar, na prática, os conceitos de desenvolvimento de API's REST, utilizando métodos HTTP para realizar operações sobre os dados da aplicação.
 
-## cStatus do Projeto:
+## Status do Projeto:
 
 🚧 Em Desenvolvimento
 A API está sendo construída progressivamente durante as aulas da disciplina.
