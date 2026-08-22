@@ -33,7 +33,7 @@ Durante o desenvolvimento da atividade, estão sendo trabalhados conceitos como:
 ### 📁 Estrutura do Projeto
 
 Atualmente, o projeto está organizado da seguinte forma:
-
+```
 MinhaApi/
 ├── Controllers/
 │   ├── ProdutoController.cs
@@ -55,7 +55,7 @@ MinhaApi/
 ├── Program.cs
 ├── MinhaApi.csproj
 └── appsettings.json
-
+```
 ### Controllers
 
 Os Controllers são responsáveis por receber as requisições HTTP e definir quais ações devem ser executadas.
