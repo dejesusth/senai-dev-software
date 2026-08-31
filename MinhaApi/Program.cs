@@ -7,15 +7,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Registra o Repository
-builder.Services.AddScoped<
-    IProdutoRepository,
-    ProdutoRepository>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
-builder.Services.AddScoped<
-    IProdutoService,
-    ProdutoService>();
-    
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

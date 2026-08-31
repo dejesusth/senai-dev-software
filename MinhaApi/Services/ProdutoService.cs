@@ -1,8 +1,11 @@
+using MinhaApi.Models;
+using MinhaApi.Services;
+using MinhaApi.Repositories;
 public class ProdutoService : IProdutoService
 {
-    private readonly IProdutoService _repo;
+    private readonly IProdutoRepository _repo;
 
-    public ProdutoService(IProdutoService repo) => _repo = repo;
+    public ProdutoService(IProdutoRepository repo) => _repo = repo;
 
     public IEnumerable<Produto> GetAll() => _repo.GetAll();
 
@@ -24,13 +27,22 @@ public class ProdutoService : IProdutoService
         return p;
     }
 
-    public Produto Delete(int id)
+public bool Delete(int id)
+{
+    var produto = _repo.GetById(id);
+
+    if (produto != null)
     {
-        if(_repo.GetById(id)){
-            _repo.Delete(id)
-            return true;
-        }
-        return false;
+        _repo.Delete(id);
+        return true;
     }
 
+    return false;
+}
+
+
+    bool IProdutoService.Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

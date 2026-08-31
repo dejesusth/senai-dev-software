@@ -1,3 +1,6 @@
+using MinhaApi.Models;
+namespace MinhaApi.Repositories;
+
 public class ProdutoRepository : IProdutoRepository
 {
     private static List<Produto> _db = new()
