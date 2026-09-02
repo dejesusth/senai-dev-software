@@ -56,9 +56,28 @@ public ProdutoRepository(IConfiguration config)
 
     public void Update(Produto p)
     {
-        var i = _db.FindIndex(x => x.Id == p.Id);
-        if (i >= 0) _db[i] = p;
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
+        string sql = @"UPDATE produtos 
+                       SET nome = @Nome, preco = @Preco, estoque = @Estoque, ativo = @Ativo
+                       WHERE id = @Id";
+
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@Id", p.Id);
+        cmd.Parameters.AddWithValue("@Nome", p.Nome);
+        cmd.Parameters.AddWithValue("@Preco", p.Preco);
+        cmd.Parameters.AddWithValue("@Estoque", p.Estoque);
+        cmd.Parameters.AddWithValue("@Ativo", p.Ativo);
+        cmd.ExecuteNonQuery();
     }
 
-    public void Delete(int id) => _db.RemoveAll(p => p.Id == id);
+    public void Delete(int id)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
+        string sql = "DELETE FROM produtos WHERE id = @Id";
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@Id", id);
+        cmd.ExecuteNonQuery();
+    }
 }
