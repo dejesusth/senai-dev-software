@@ -30,14 +30,19 @@ public class ClienteService : IClienteService
         return cliente;
     }
 
+    public bool Delete(int id)
+{
+    var cliente = _repo.GetById(id);
+    if (cliente != null)
+    {
+        _repo.Delete(id);
+        return true;
+    }
+    return false;
+}
+
     public bool Delete(int id, Cliente cliente)
     {
-        if (_repo.GetById(id) == null) return false;
-        cliente.Ativo = false;
-        if (cliente != null){
-            _repo.Update(cliente);
-            return true;
-        }
-        return false;
+        throw new NotImplementedException();
     }
 }

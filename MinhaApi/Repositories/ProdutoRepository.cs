@@ -1,10 +1,11 @@
 using MinhaApi.Models;
 using MySqlConnector;
 namespace MinhaApi.Repositories;
-public class ProdutoRepository : IProdutoRepository{
-private readonly string _connectionString;
-public ProdutoRepository(IConfiguration config) 
-=> _connectionString = config.GetConnectionString("DefaultConnection")!;
+public class ProdutoRepository : IProdutoRepository
+{
+    private readonly string _connectionString;
+    public ProdutoRepository(IConfiguration config) 
+        => _connectionString = config.GetConnectionString("DefaultConnection")!;
 
     private static List<Produto> _db = new()
     {
@@ -33,9 +34,9 @@ public ProdutoRepository(IConfiguration config)
       return lista;
   }
     public Produto? GetById(int id)
-{
-    using var conn = new MySqlConnection(_connectionString);
-    conn.Open();
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
 
     string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos WHERE id = @Id";
     using var cmd = new MySqlCommand(sql, conn);

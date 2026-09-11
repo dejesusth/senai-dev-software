@@ -1,7 +1,6 @@
 using MinhaApi.Models;
 using MySqlConnector;
 namespace MinhaApi.Repositories;
-
 public class ClienteRepository : IClienteRepository
 {
     private readonly string _connectionString;

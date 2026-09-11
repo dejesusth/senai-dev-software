@@ -7,4 +7,5 @@ public interface IClienteService
     Cliente  Add(Cliente cliente);
     Cliente? Update(int id, Cliente cliente);
     bool     Delete(int id, Cliente cliente);
+    bool Delete(int id);
 }
