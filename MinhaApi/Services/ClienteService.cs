@@ -40,9 +40,4 @@ public class ClienteService : IClienteService
     }
     return false;
 }
-
-    public bool Delete(int id, Cliente cliente)
-    {
-        throw new NotImplementedException();
-    }
 }
