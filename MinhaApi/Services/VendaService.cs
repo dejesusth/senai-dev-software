@@ -49,6 +49,8 @@ private int Quantidade(Venda venda)
         {
             throw new ArgumentException("Estoque insuficiente!");
         }
+        venda.ValorTotal = produto.Preco * Quantidade(venda);
+        venda.DataVenda = DateTime.Now;
         _repo.Add(venda);
         return venda;
     }
@@ -57,7 +59,7 @@ private int Quantidade(Venda venda)
         public Venda? Update(int id, Venda venda)
     {
         if (_repo.GetById(id) == null) return null;
-        venda.IdVenda = id;
+        venda.Id = id;
         _repo.Update(venda);
         return venda;
     }

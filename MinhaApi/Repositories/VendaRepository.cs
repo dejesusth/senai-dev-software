@@ -9,7 +9,7 @@ public class VendaRepository : IVendaRepository
 
     private static List<Venda> _db = new()
     {
-        new Venda { IdVenda=1, DataVenda=DateTime.Now, ValorTotal=100.00m, ProdutoId=1, ClienteId=1 }
+        new Venda { Id=1, DataVenda=DateTime.Now, ValorTotal=100.00m, ProdutoId=1, ClienteId=1 }
     };
     public IEnumerable<Venda> GetAll() {
         var lista = new List<Venda>();
@@ -22,7 +22,7 @@ public class VendaRepository : IVendaRepository
 
         while (reader.Read()) {
             lista.Add(new Venda {
-                IdVenda = reader.GetInt32("id"),
+                Id = reader.GetInt32("id"),
                 DataVenda = reader.GetDateTime("data_venda"),
                 Quantidade = reader.GetInt32("quantidade"),
                 ValorTotal = reader.GetDecimal("valor_total"),
@@ -48,7 +48,7 @@ public class VendaRepository : IVendaRepository
         {
             return new Venda 
             {
-                IdVenda = reader.GetInt32("id"),
+                Id = reader.GetInt32("id"),
                 DataVenda = reader.GetDateTime("data_venda"),
                 ValorTotal = reader.GetDecimal("valor_total"),
                 ProdutoId = reader.GetInt32("produto_id"),
@@ -69,8 +69,8 @@ public class VendaRepository : IVendaRepository
         cmd.Parameters.AddWithValue("@DataVenda", venda.DataVenda);
         cmd.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
         cmd.Parameters.AddWithValue("@ValorTotal", venda.ValorTotal);
-        cmd.Parameters.AddWithValue("@ProdutoId", venda.ProdutoId);
-        cmd.Parameters.AddWithValue("@ClienteId", venda.ClienteId);
+        cmd.Parameters.AddWithValue("@ProdutoId", venda.Id);
+        cmd.Parameters.AddWithValue("@ClienteId", venda.Id);
 
         cmd.ExecuteNonQuery();
     }
@@ -81,7 +81,7 @@ public class VendaRepository : IVendaRepository
 
         string sql = "UPDATE vendas SET data_venda = @DataVenda, valor_total = @ValorTotal, produto_id = @ProdutoId, cliente_id = @ClienteId WHERE id = @Id";
         using var cmd = new MySqlCommand(sql, conn);
-        cmd.Parameters.AddWithValue("@Id", venda.IdVenda);
+        cmd.Parameters.AddWithValue("@Id", venda.Id);
         cmd.Parameters.AddWithValue("@DataVenda", venda.DataVenda);
         cmd.Parameters.AddWithValue("@Quantidade", venda.Quantidade);
         cmd.Parameters.AddWithValue("@ValorTotal", venda.ValorTotal);

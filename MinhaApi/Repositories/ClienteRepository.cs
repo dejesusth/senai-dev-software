@@ -81,7 +81,6 @@ public class ClienteRepository : IClienteRepository
         cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
         cmd.Parameters.AddWithValue("@Ativo", c.Ativo);
         cmd.Parameters.AddWithValue("@Id", c.Id);
-        
         cmd.ExecuteNonQuery();
     }
     public void Delete(int id)
