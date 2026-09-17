@@ -36,6 +36,6 @@ public class VendaController : ControllerBase
             return BadRequest(ModelState);
 
         var criado = _service.Add(venda);
-        return CreatedAtAction(nameof(GetById), new { id = criado.IdVenda }, criado);
+        return CreatedAtAction(nameof(GetById), new { id = criado.Id }, criado);
     }
 }

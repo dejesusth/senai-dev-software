@@ -20,26 +20,28 @@ public class VendaService : IVendaService
 
     public Venda? GetById(int id) => _repo.GetById(id);
 
-private int Quantidade(Venda venda)
-        {
-            throw new NotImplementedException();
-        }
+    private int Quantidade(Venda venda) => venda.Quantidade;
+
     public Venda Add(Venda venda)
     {
-        if(venda.DataVenda == null)
-            throw new ArgumentException("Data inválida!");
-        if(venda.ValorTotal <= 0)
-            throw new ArgumentException("Valor inválido!");
+        if (Quantidade(venda) <= 0)
+        {
+            throw new ArgumentException("Quantidade inválida!");
+        }
         var cliente = _clienteRepo.GetById(venda.ClienteId);
+
         var produto = _produtoRepo.GetById(venda.ProdutoId);
+
         if(cliente == null)
             {
             throw new ArgumentException("Cliente não encontrado!");
             }
+
         if(produto == null)
             {
             throw new ArgumentException("Produto não encontrado!");
             }
+
         if(produto.Estoque >= Quantidade(venda))
         {
             produto.Estoque -= Quantidade(venda);
@@ -49,30 +51,14 @@ private int Quantidade(Venda venda)
         {
             throw new ArgumentException("Estoque insuficiente!");
         }
+
         venda.ValorTotal = produto.Preco * Quantidade(venda);
+
         venda.DataVenda = DateTime.Now;
+
         _repo.Add(venda);
+        
         return venda;
-    }
-
-
-        public Venda? Update(int id, Venda venda)
-    {
-        if (_repo.GetById(id) == null) return null;
-        venda.Id = id;
-        _repo.Update(venda);
-        return venda;
-    }
-
-    public bool Delete(int id)
-    {
-        var venda = _repo.GetById(id);
-        if (venda != null)
-        {
-            _repo.Delete(id);
-            return true;
-        }
-        return false;
     }
 }
 }

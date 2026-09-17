@@ -7,10 +7,6 @@ public class ClienteRepository : IClienteRepository
     public ClienteRepository(IConfiguration config) 
         => _connectionString = config.GetConnectionString("DefaultConnection")!;
 
-    private static List<Cliente> _db = new()
-    {
-        new Cliente { Id=1, Nome="Thiago", Email="thiago@email.com", Cpf="123.456.789-00", Ativo=true } 
-    };
     public IEnumerable<Cliente> GetAll() {
         var lista = new List<Cliente>();
         using var conn = new MySqlConnection(_connectionString);
@@ -67,7 +63,8 @@ public class ClienteRepository : IClienteRepository
         cmd.Parameters.AddWithValue("@Email", c.Email);
         cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
         cmd.Parameters.AddWithValue("@Ativo", c.Ativo);
-        cmd.ExecuteNonQuery();
+        var idGerado = cmd.ExecuteScalar();
+        c.Id = Convert.ToInt32(idGerado);
     }
     public void Update(Cliente c)
     {
@@ -81,15 +78,6 @@ public class ClienteRepository : IClienteRepository
         cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
         cmd.Parameters.AddWithValue("@Ativo", c.Ativo);
         cmd.Parameters.AddWithValue("@Id", c.Id);
-        cmd.ExecuteNonQuery();
-    }
-    public void Delete(int id)
-    {
-        using var conn = new MySqlConnection(_connectionString);
-        conn.Open();
-        string sql = "DELETE FROM clientes WHERE id = @Id";
-        using var cmd = new MySqlCommand(sql, conn);
-        cmd.Parameters.AddWithValue("@Id", id);
         cmd.ExecuteNonQuery();
     }
 }

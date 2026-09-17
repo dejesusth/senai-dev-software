@@ -1,7 +1,6 @@
 using MinhaApi.Models;
 using MinhaApi.Services;
 using MinhaApi.Repositories;
-using Microsoft.Net.Http.Headers;
 public class ClienteService : IClienteService
 {
     private readonly IClienteRepository _repo;
@@ -33,11 +32,15 @@ public class ClienteService : IClienteService
     public bool Delete(int id)
 {
     var cliente = _repo.GetById(id);
-    if (cliente != null)
+
+    if (cliente == null)
     {
-        _repo.Delete(id);
-        return true;
+        return false;
     }
-    return false;
+    cliente.Ativo = false;
+
+    _repo.Update(cliente);
+    
+    return true;
 }
 }
