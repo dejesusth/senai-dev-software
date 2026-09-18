@@ -8,17 +8,29 @@ O projeto tem como objetivo aplicar, na prática, os conceitos de desenvolviment
 
 ✅ Concluído
 
-A API possui operações para gerenciamento de produtos e clientes, além do registro de vendas com controle de estoque.
+## 🏗️ Arquitetura
 
-A aplicação foi desenvolvida utilizando uma arquitetura organizada em camadas:
+A aplicação foi desenvolvida utilizando uma arquitetura organizada em camadas, separando as responsabilidades de cada parte do sistema:
 
+```text
+Cliente
+   ↓
 Controller
-    ↓
- Service
-    ↓
+   ↓
+Service
+   ↓
 Repository
-    ↓
-  MySQL
+   ↓
+MySQL
+```
+
+### Responsabilidade de cada camada
+
+* **Controller:** recebe as requisições HTTP e retorna as respostas da API.
+* **Service:** concentra as regras de negócio e as validações da aplicação.
+* **Repository:** realiza a comunicação com o banco de dados e executa as operações SQL.
+* **MySQL:** responsável pela persistência dos dados.
+
 
 ## 📚 Sobre o Projeto
 
