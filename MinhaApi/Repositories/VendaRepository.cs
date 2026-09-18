@@ -12,7 +12,10 @@ public class VendaRepository : IVendaRepository
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
-        string sql = "SELECT id, cliente_id, data_venda,quantidade, valor_total, produto_id FROM vendas";
+        string sql = "SELECT v.id, v.cliente_id, v.data_venda, v.quantidade, v.valor_total, v.produto_id, c.nome AS nome_cliente, p.nome AS nome_produto FROM vendas v"
+        + " JOIN clientes c ON v.cliente_id = c.id"
+        + " JOIN produtos p ON v.produto_id = p.id";
+        
         using var cmd = new MySqlCommand(sql, conn);
         using var reader = cmd.ExecuteReader();
 
@@ -23,7 +26,9 @@ public class VendaRepository : IVendaRepository
                 Quantidade = reader.GetInt32("quantidade"),
                 ValorTotal = reader.GetDecimal("valor_total"),
                 ProdutoId = reader.GetInt32("produto_id"),
-                ClienteId = reader.GetInt32("cliente_id")
+                NomeProduto = reader.GetString("nome_produto"),
+                ClienteId = reader.GetInt32("cliente_id"),
+                NomeCliente = reader.GetString("nome_cliente")
             });
         }
         return lista;
