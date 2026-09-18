@@ -128,30 +128,34 @@ Durante o registro de uma venda, o sistema verifica a existência do cliente e d
 
 ### 🌐 Endpoints
 
-#### Produtos
+### 📦 Produtos
 
-Método |     Endpoint	   | Descrição
-GET	   |   /api/Produto    | Lista todos os produtos
-GET	   | /api/Produto/{id} | Busca um produto pelo ID
-POST   |   /api/Produto	   | Cadastra um produto
-PUT	   | /api/Produto/{id} | Atualiza um produto
-DELETE | /api/Produto/{id} | Remove um produto
+| Método   | Endpoint            | Descrição                |
+| -------- | ------------------- | ------------------------ |
+| `GET`    | `/api/Produto`      | Lista todos os produtos  |
+| `GET`    | `/api/Produto/{id}` | Busca um produto pelo ID |
+| `POST`   | `/api/Produto`      | Cadastra um produto      |
+| `PUT`    | `/api/Produto/{id}` | Atualiza um produto      |
+| `DELETE` | `/api/Produto/{id}` | Remove um produto        |
 
-#### Clientes
+### 👤 Clientes
 
-Método |     Endpoint	   | Descrição
-GET	   |   /api/Cliente    | Lista todos os clientes
-GET	   | /api/Cliente/{id} | Busca um cliente pelo ID
-POST   |   /api/Cliente	   | Cadastra um cliente
-PUT	   | /api/Cliente/{id} | Atualiza um cliente
-DELETE | /api/Cliente/{id} | Remove um cliente
+| Método   | Endpoint            | Descrição                |
+| -------- | ------------------- | ------------------------ |
+| `GET`    | `/api/Cliente`      | Lista todos os clientes  |
+| `GET`    | `/api/Cliente/{id}` | Busca um cliente pelo ID |
+| `POST`   | `/api/Cliente`      | Cadastra um cliente      |
+| `PUT`    | `/api/Cliente/{id}` | Atualiza um cliente      |
+| `DELETE` | `/api/Cliente/{id}` | Remove um cliente        |
 
-#### Vendas
+### 🛒 Vendas
 
-Método |     Endpoint	 | Descrição
-GET	   |   /api/Venda    | Lista todas as vendas
-GET	   | /api/Venda/{id} | Busca uma venda pelo ID
-POST   |   /api/Venda	 | Registra uma nova venda
+| Método | Endpoint          | Descrição               |
+| ------ | ----------------- | ----------------------- |
+| `GET`  | `/api/Venda`      | Lista todas as vendas   |
+| `GET`  | `/api/Venda/{id}` | Busca uma venda pelo ID |
+| `POST` | `/api/Venda`      | Registra uma nova venda |
+
 
 ### Banco de Dados
 
