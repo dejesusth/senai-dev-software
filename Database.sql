@@ -21,15 +21,16 @@ CREATE TABLE IF NOT EXISTS clientes (
 );
 
 -- 4. Criação da Tabela de Vendas
-CREATE TABLE IF NOT EXISTS venda (
+CREATE TABLE IF NOT EXISTS vendas (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    data_venda DATE,
-    horario_venda TIME,
-    valor_total DECIMAL(10,2),
-    idproduto INT,
-    idcliente INT,
-    FOREIGN KEY (idproduto) REFERENCES produtos(idproduto),
-    FOREIGN KEY (idcliente) REFERENCES clientes(idcliente)
+    data_venda DATETIME NOT NULL,
+    quantidade INT NOT NULL,
+    valor_total DECIMAL(10,2) NOT NULL,
+    produto_id INT NOT NULL,
+    cliente_id INT NOT NULL,
+    
+    FOREIGN KEY (produto_id) REFERENCES produtos(id),
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 -- 5. Inserção de Dados Iniciais
 INSERT INTO produtos (nome, preco, estoque, ativo) 
@@ -41,4 +42,4 @@ INSERT INTO clientes (nome, email, cpf, ativo)
 VALUES
 ('Thiago', 'thiago@email.com', '123.456.789-00',1);
 
-select * from venda;
+select * from produtos;
