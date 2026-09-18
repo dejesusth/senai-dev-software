@@ -1,25 +1,41 @@
 # Minha API - Desenvolvimento de Sistemas
 
-API REST desenvolvida em C# com ASP.NET Core como atividade prática da disciplina de Desenvolvimento de Sistemas, do III Módulo do Curso Técnico em Desenvolvimento de Sistemas.
+API REST desenvolvida em C# com ASP.NET Core como atividade prática da disciplina de Desenvolvimento de Sistemas, do III Módulo do Curso Técnico em Desenvolvimento de Sistemas - SENAI.
 
-O projeto tem como objetivo aplicar, na prática, os conceitos de desenvolvimento de API's REST, utilizando métodos HTTP para realizar operações sobre os dados da aplicação.
+O projeto tem como objetivo aplicar, na prática, os conceitos de desenvolvimento de API's REST, organização em camadas, operações HTTP, persistência de dados e integração com banco de dados MySQL.
 
 ## Status do Projeto:
 
-🚧 Em Desenvolvimento
+✅ Concluído
 
-A API está sendo construída progressivamente durante as aulas da disciplina.
+A API possui operações para gerenciamento de produtos e clientes, além do registro de vendas com controle de estoque.
+
+A aplicação foi desenvolvida utilizando uma arquitetura organizada em camadas:
+
+Controller
+    ↓
+ Service
+    ↓
+Repository
+    ↓
+  MySQL
 
 ## 📚 Sobre o Projeto
 
 Durante o desenvolvimento da atividade, estão sendo trabalhados conceitos como:
 - Criação de uma API REST
-- Organização do projeto em diferentes camadas
-- Criação de Models
-- Criação de Controllers
 - Utilização de métodos HTTP
-- Comunicação entre as diferentes partes da aplicação
-- Testes das requisições da API
+- Criação e Organização de Models
+- Criação e Organização de Controllers
+- Services e Interfaces
+- Injeção de Dependência
+- Integração com Banco de Dados MySQL
+- Consultas SQL parametrizadas
+- Validação de Dados
+- Controle de estoque durante uma venda
+- Testes dos Endpoints utilizando Swagger
+- Versionamento com Git e Github
+
 
 ## 🛠 Tecnologias Utilizadas
 
@@ -36,50 +52,126 @@ Atualmente, o projeto está organizado da seguinte forma:
 ```
 MinhaApi/
 ├── Controllers/
+|   ├── ClienteController.cs
 │   ├── ProdutoController.cs
-│   └── TipoController.cs
+│   └── VendaController.cs
 │
 ├── Models/
+|   ├── Cliente.cs
 │   ├── Produto.cs
-│   └── Tipo.cs
+│   └── Venda.cs
 │
 ├── Repositories/
+|   ├── IClienteRepository.cs
 │   ├── IProdutoRepository.cs
-│   └── ProdutoRepository.cs
+|   ├── IVendaRepository.cs
+|   ├── ClienteRepository.cs
+|   ├── ProdutoRepository.cs
+│   └── VendaRepository.cs
 │
 ├── Services/
+|   ├── IClienteService.cs
 │   ├── IProdutoService.cs
-│   └── ProdutoService.cs
+|   ├── IVendaService.cs
+|   ├── ClienteService.cs
+|   ├── ProdutoService.cs
+│   └── VendaService.cs
 │
 ├── Program.cs
 ├── MinhaApi.csproj
-└── appsettings.json
+├── appsettings.json
+└── Database.sql
 ```
 ### Controllers
 
 Os Controllers são responsáveis por receber as requisições HTTP e definir quais ações devem ser executadas.
 
 Atualmente, o projeto possui:
+- ClienteController
 - ProdutoController
-- TipoController
+- VendaController
 
 ### Models
 
-Os Models representam os dados utilizados pela aplicação.
+#### Produto
+Representa os produtos disponíveis para venda.
 
-O Model Produto possui atualmente:
-
+Possui:
 - Id
 - Nome
 - Preco
 - Estoque
 - Ativo
-- Tipo
 
-O Model Tipo possui atualmente:
+#### Cliente
+Representa os clientes cadastrados na aplicação.
 
+Possui:
 - Id
 - Nome
+- Email
+- CPF
+- Ativo
+
+#### Venda
+Representa uma venda realizada.
+
+Possui: 
+- Id
+- DataVenda
+- Quantidade
+- ValorTotal
+- ProdutoId
+- ClienteId
+
+Durante o registro de uma venda, o sistema verifica a existência do cliente e do produto, verifica o estoque disponível, calcula o valor total e atualiza o estoque do produto.
+
+### 🌐 Endpoints
+
+#### Produtos
+
+Método |     Endpoint	     | Descrição
+GET	   |   /api/Produto    | Lista todos os produtos
+GET	   | /api/Produto/{id} | Busca um produto pelo ID
+POST	 |   /api/Produto	   | Cadastra um produto
+PUT	   | /api/Produto/{id} | Atualiza um produto
+DELETE | /api/Produto/{id} | Remove um produto
+
+#### Clientes
+
+Método |     Endpoint	     | Descrição
+GET	   |   /api/Cliente    | Lista todos os clientes
+GET	   | /api/Cliente/{id} | Busca um cliente pelo ID
+POST	 |   /api/Cliente	   | Cadastra um cliente
+PUT	   | /api/Cliente/{id} | Atualiza um cliente
+DELETE | /api/Cliente/{id} | Remove um cliente
+
+#### Vendas
+
+Método |     Endpoint	   | Descrição
+GET	   |   /api/Venda    | Lista todas as vendas
+GET	   | /api/Venda/{id} | Busca uma venda pelo ID
+POST	 |   /api/Venda	   | Registra uma nova venda
+
+### Banco de Dados
+
+A aplicação utiliza MySQL para armazenamento de dados.
+
+O arquivo Database.sql contém a estrutura necessária para criação do banco de dados e das tabelas utilizadas pela aplicação.
+
+#### ⚙ Configuração do Banco
+
+A conexão com o MySQL é configurada no arquivo *appsettings.json* 
+
+
+
+
+
+
+
+
+
+
 
 ## ▶️ Como executar o projeto
 ### Pré-requisitos
