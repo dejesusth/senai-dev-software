@@ -130,28 +130,28 @@ Durante o registro de uma venda, o sistema verifica a existência do cliente e d
 
 #### Produtos
 
-Método |     Endpoint	     | Descrição
+Método |     Endpoint	   | Descrição
 GET	   |   /api/Produto    | Lista todos os produtos
 GET	   | /api/Produto/{id} | Busca um produto pelo ID
-POST	 |   /api/Produto	   | Cadastra um produto
+POST   |   /api/Produto	   | Cadastra um produto
 PUT	   | /api/Produto/{id} | Atualiza um produto
 DELETE | /api/Produto/{id} | Remove um produto
 
 #### Clientes
 
-Método |     Endpoint	     | Descrição
+Método |     Endpoint	   | Descrição
 GET	   |   /api/Cliente    | Lista todos os clientes
 GET	   | /api/Cliente/{id} | Busca um cliente pelo ID
-POST	 |   /api/Cliente	   | Cadastra um cliente
+POST   |   /api/Cliente	   | Cadastra um cliente
 PUT	   | /api/Cliente/{id} | Atualiza um cliente
 DELETE | /api/Cliente/{id} | Remove um cliente
 
 #### Vendas
 
-Método |     Endpoint	   | Descrição
+Método |     Endpoint	 | Descrição
 GET	   |   /api/Venda    | Lista todas as vendas
 GET	   | /api/Venda/{id} | Busca uma venda pelo ID
-POST	 |   /api/Venda	   | Registra uma nova venda
+POST   |   /api/Venda	 | Registra uma nova venda
 
 ### Banco de Dados
 
@@ -161,26 +161,17 @@ O arquivo Database.sql contém a estrutura necessária para criação do banco d
 
 #### ⚙ Configuração do Banco
 
-A conexão com o MySQL é configurada no arquivo *appsettings.json* 
-
-
-
-
-
-
-
-
-
-
+A conexão com o MySQL é configurada no arquivo *appsettings.json* através da *ConnectionString*.
 
 ## ▶️ Como executar o projeto
 ### Pré-requisitos
 
 Para executar o projeto, é necessário ter instalado:
 
-.NET SDK;
-Git;
-Uma IDE ou editor de código compatível com C#, como Visual Studio ou Visual Studio Code.
+- .NET SDK;
+- MySQL Server
+- Git;
+- Uma IDE ou editor de código compatível com C#, como Visual Studio ou Visual Studio Code.
 
 ### 📖 Swagger
 
@@ -201,12 +192,6 @@ git push
 git pull
 
 O GitHub é utilizado como repositório remoto para armazenar e sincronizar as versões do projeto.
-
-### 🚧 Próximos passos
-
-O projeto continuará sendo desenvolvido conforme o conteúdo apresentado nas aulas da disciplina.
-
-Novas funcionalidades e melhorias serão adicionadas ao README conforme forem implementadas no projeto.
 
 ### 🎓 Contexto acadêmico
 
