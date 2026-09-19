@@ -200,14 +200,6 @@ Com a aplicação em execução, o Swagger pode ser acessado pelo endereço disp
 
 O código-fonte do projeto é versionado utilizando Git e armazenado no GitHub.
 
-Durante o desenvolvimento são utilizados, entre outros, os seguintes comandos:
-
-git status
-git add .
-git commit -m "mensagem do commit"
-git push
-git pull
-
 O GitHub é utilizado como repositório remoto para armazenar e sincronizar as versões do projeto.
 
 ### 🎓 Contexto acadêmico
