@@ -13,4 +13,9 @@ public class Produto
 
     public bool Ativo { get; set; }
         = true;
+
+    public int FornecedorId { get; set; }
+    public string NomeFornecedor { get; set; }
+        = string.Empty;
+
 }

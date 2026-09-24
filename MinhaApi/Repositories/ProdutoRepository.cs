@@ -1,3 +1,4 @@
+using System.Threading.Tasks.Dataflow;
 using MinhaApi.Models;
 using MySqlConnector;
 namespace MinhaApi.Repositories;
@@ -12,7 +13,9 @@ public class ProdutoRepository : IProdutoRepository
       using var conn = new MySqlConnection(_connectionString);
       conn.Open();
 
-      string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos";
+      string sql = "SELECT id, nome, preco, estoque, ativo, f.id AS id, f.nome as Fornecedor FROM produtos"
+      + "JOIN fornecedor f ON p.fornecedor_id = f.id";
+
       using var cmd = new MySqlCommand(sql, conn);
       using var reader = cmd.ExecuteReader();
 
@@ -22,7 +25,9 @@ public class ProdutoRepository : IProdutoRepository
               Nome = reader.GetString("nome"),
               Preco = reader.GetDecimal("preco"),
               Estoque = reader.GetInt32("estoque"),
-              Ativo = reader.GetBoolean("ativo")
+              Ativo = reader.GetBoolean("ativo"),
+              FornecedorId = reader.GetInt32("f.id"),
+              NomeFornecedor = reader.GetString("f.nome")
           });
       }
       return lista;
@@ -32,7 +37,9 @@ public class ProdutoRepository : IProdutoRepository
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
-    string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos WHERE id = @Id";
+   string sql = "SELECT id, nome, preco, estoque, ativo, f.id AS id, f.nome as Fornecedor FROM produtos"
+      + "JOIN fornecedor f ON p.fornecedor_id = f.id";
+    
     using var cmd = new MySqlCommand(sql, conn);
     cmd.Parameters.AddWithValue("@Id", id);
 
@@ -42,11 +49,13 @@ public class ProdutoRepository : IProdutoRepository
     {
         return new Produto 
         {
-            Id = reader.GetInt32("id"),
-            Nome = reader.GetString("nome"),
-            Preco = reader.GetDecimal("preco"),
-            Estoque = reader.GetInt32("estoque"),
-            Ativo = reader.GetBoolean("ativo")
+              Id = reader.GetInt32("id"),
+              Nome = reader.GetString("nome"),
+              Preco = reader.GetDecimal("preco"),
+              Estoque = reader.GetInt32("estoque"),
+              Ativo = reader.GetBoolean("ativo"),
+              FornecedorId = reader.GetInt32("f.id"),
+              NomeFornecedor = reader.GetString("f.nome")
         };
     }
 
@@ -58,8 +67,8 @@ public class ProdutoRepository : IProdutoRepository
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
-        string sql = @"INSERT INTO produtos (nome, preco, estoque, ativo)
-                       VALUES (@Nome, @Preco, @Estoque, @Ativo);
+        string sql = @"INSERT INTO produtos (nome, preco, estoque, ativo, fornecedor_id)
+                       VALUES (@Nome, @Preco, @Estoque, @Ativo, @Fornecedor_Id);
                        SELECT LAST_INSERT_ID();";
 
         using var cmd = new MySqlCommand(sql, conn);
@@ -67,6 +76,8 @@ public class ProdutoRepository : IProdutoRepository
         cmd.Parameters.AddWithValue("@Preco", p.Preco);
         cmd.Parameters.AddWithValue("@Estoque", p.Estoque);
         cmd.Parameters.AddWithValue("@Ativo", p.Ativo);
+        cmd.Parameters.AddWithValue("@Fornecedor_Id", p.FornecedorId);
+        
 
         // Executa a inserção e recupera o ID gerado pelo MySQL
         var idGerado = cmd.ExecuteScalar();
@@ -78,7 +89,7 @@ public class ProdutoRepository : IProdutoRepository
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
         string sql = @"UPDATE produtos 
-                       SET nome = @Nome, preco = @Preco, estoque = @Estoque, ativo = @Ativo
+                       SET nome = @Nome, preco = @Preco, estoque = @Estoque, ativo = @Ativo, fornecedor_id = @Fornecedor_Id
                        WHERE id = @Id";
 
         using var cmd = new MySqlCommand(sql, conn);
@@ -87,6 +98,7 @@ public class ProdutoRepository : IProdutoRepository
         cmd.Parameters.AddWithValue("@Preco", p.Preco);
         cmd.Parameters.AddWithValue("@Estoque", p.Estoque);
         cmd.Parameters.AddWithValue("@Ativo", p.Ativo);
+        cmd.Parameters.AddWithValue("@Fornecedor_Id", p.FornecedorId);
         cmd.ExecuteNonQuery();
     }
 
