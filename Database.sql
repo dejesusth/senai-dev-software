@@ -62,5 +62,3 @@ VALUES
 INSERT INTO clientes (nome, email, cpf, ativo)
 VALUES
 ('Thiago', 'thiago@email.com', '123.456.789-00',1);
-
-select * from funcionario;
