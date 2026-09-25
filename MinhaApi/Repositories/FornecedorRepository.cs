@@ -1,20 +1,31 @@
 using MinhaApi.Models;
 using MySqlConnector;
 namespace MinhaApi.Repositories;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
 public class FornecedorRepository : IFornecedorRepository
 {
     private readonly string _connectionString;
     public FornecedorRepository(IConfiguration config) 
         => _connectionString = config.GetConnectionString("DefaultConnection")!;
 
+<<<<<<< HEAD
         public IEnumerable<Fornecedor> GetAll() {
+=======
+    public IEnumerable<Fornecedor> GetAll() {
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
         var lista = new List<Fornecedor>();
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
+<<<<<<< HEAD
         string sql = "SELECT id, nome, email, cnpj, ativo FROM fornecedor f";
 
+=======
+        string sql = "SELECT id, nome, email, cnpj, ativo FROM fornecedor";
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
         using var cmd = new MySqlCommand(sql, conn);
         using var reader = cmd.ExecuteReader();
 
@@ -29,14 +40,22 @@ public class FornecedorRepository : IFornecedorRepository
         }
         return lista;
     }
+<<<<<<< HEAD
 
         public Fornecedor? GetById(int id)
+=======
+    public Fornecedor? GetById(int id)
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
+<<<<<<< HEAD
         string sql = "SELECT id, nome, email, cnpj, ativo FROM fornecedor f";
 
+=======
+        string sql = "SELECT id, nome, email, cnpj, ativo FROM fornecedor WHERE id = @Id";
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
         using var cmd = new MySqlCommand(sql, conn);
         cmd.Parameters.AddWithValue("@Id", id);
 
@@ -53,9 +72,16 @@ public class FornecedorRepository : IFornecedorRepository
                 Ativo = reader.GetBoolean("ativo")
             };
         }
+<<<<<<< HEAD
         return null;
     }
         public void Add(Fornecedor f)
+=======
+
+        return null;
+    }
+    public void Add(Fornecedor f)
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
@@ -69,8 +95,12 @@ public class FornecedorRepository : IFornecedorRepository
         var idGerado = cmd.ExecuteScalar();
         f.Id = Convert.ToInt32(idGerado);
     }
+<<<<<<< HEAD
 
         public void Update(Fornecedor f)
+=======
+    public void Update(Fornecedor f)
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
@@ -94,4 +124,8 @@ public class FornecedorRepository : IFornecedorRepository
         cmd.Parameters.AddWithValue("@Id", id);
         cmd.ExecuteNonQuery();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79

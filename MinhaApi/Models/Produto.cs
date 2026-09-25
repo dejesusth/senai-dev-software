@@ -15,7 +15,10 @@ public class Produto
         = true;
 
     public int FornecedorId { get; set; }
+<<<<<<< HEAD
     public string NomeFornecedor { get; set; }
         = string.Empty;
+=======
+>>>>>>> f59094a4ae879af44ae10f37cca243b94b338e79
 
 }
