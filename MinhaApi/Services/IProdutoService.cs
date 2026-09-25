@@ -6,5 +6,5 @@ public interface IProdutoService
     Produto? GetById(int id);
     Produto  Add(Produto produto);
     Produto? Update(int id, Produto produto);
-    bool     Delete(int id);
+    bool Delete(int id);
 }
