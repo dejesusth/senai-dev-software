@@ -1,19 +1,18 @@
 namespace MinhaApi.Models;
 
-public class Produto
+public class Fornecedor
 {
     public int Id { get; set; }
 
     public string Nome { get; set; }
         = string.Empty;
 
-    public decimal Preco { get; set; }
+    public string Email { get; set; }
+        = string.Empty;
 
-    public int Estoque { get; set; }
-
+    public string Cnpj { get; set; }
+        = string.Empty;
+        
     public bool Ativo { get; set; }
         = true;
-
-    public int FornecedorId { get; set; }
-
 }

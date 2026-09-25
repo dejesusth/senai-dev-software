@@ -32,7 +32,18 @@ CREATE TABLE IF NOT EXISTS vendas (
     FOREIGN KEY (produto_id) REFERENCES produtos(id),
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
--- 5. Inserção de Dados Iniciais
+
+-- 5. Criação da Tabela de Fornecedores
+CREATE TABLE IF NOT EXISTS fornecedores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(18) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    ativo TINYINT(1) NOT NULL DEFAULT 1
+);
+
+-- 6. Inserção de Dados Iniciais
 INSERT INTO produtos (nome, preco, estoque, ativo) 
 VALUES 
 ('Notebook', 3500.00, 10, 1),
