@@ -23,6 +23,10 @@ builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
 
 builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
 
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+
+builder.Services.AddScoped<IFuncionarioService, FuncionarioService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
