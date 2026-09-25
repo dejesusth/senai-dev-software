@@ -4,43 +4,43 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProdutoController : ControllerBase
+public class DepartamentoController : ControllerBase
 {
-    private readonly IProdutoService _service;
+    private readonly IDepartamentoService _service;
 
-    public ProdutoController(IProdutoService service) => _service = service;
+    public DepartamentoController(IDepartamentoService service) => _service = service;
 
     [HttpGet]
     public IActionResult GetAll()
     {
-        var produtos = _service.GetAll();
-        return Ok(produtos);
+        var departamento = _service.GetAll();
+        return Ok(departamento);
     }
 
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
-        var produto = _service.GetById(id);
-        if (produto == null)
+        var departamento = _service.GetById(id);
+        if (departamento == null)
             return NotFound();
-        return Ok(produto);
+        return Ok(departamento);
     }
 
     [HttpPost]
-    public IActionResult Create([FromBody] Produto produto)
+    public IActionResult Create([FromBody] Departamento departamento)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var criado = _service.Add(produto);
+        var criado = _service.Add(departamento);
 
         return CreatedAtAction(nameof(GetById), new { id = criado.Id }, criado);
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(int id, [FromBody] Produto produto)
+    public IActionResult Update(int id, [FromBody] Departamento departamento)
         {
-            var atualizado = _service.Update(id, produto);
+            var atualizado = _service.Update(id, departamento);
 
             if (atualizado == null)
                 return NotFound();
@@ -52,10 +52,8 @@ public class ProdutoController : ControllerBase
     public IActionResult Delete(int id)
     {
         bool deletado = _service.Delete(id);
-
         if (!deletado)
             return NotFound();
-
         return NoContent();
     }
 }
