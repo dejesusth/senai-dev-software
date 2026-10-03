@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { produtoService } from '../services/produtoservice.ts'
+import './produto.css'
 
 interface Props {
   onProdutoCriado: () => void
 }
 
 function ProdutoForm({ onProdutoCriado }: Props) {
-  const [nome,    setNome]    = useState('')
-  const [preco,   setPreco]   = useState('')
+  const [nome, setNome] = useState('')
+  const [preco, setPreco] = useState('')
   const [loading, setLoading] = useState(false)
-  const [erro,    setErro]    = useState<string | null>(null)
+  const [erro, setErro] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -18,7 +19,7 @@ function ProdutoForm({ onProdutoCriado }: Props) {
       setLoading(true)
       await produtoService.criar({
         nome,
-        preco: Number(preco)
+        preco: Number(preco),
       })
       setNome('')
       setPreco('')
@@ -29,41 +30,61 @@ function ProdutoForm({ onProdutoCriado }: Props) {
       setLoading(false)
     }
   }
-return (
-    <form onSubmit={handleSubmit}>
-      <h2>Cadastrar Produto</h2>
+
+  return (
+    <div className="produto-container">
+      <h2 className="produto-titulo">Cadastrar Produto</h2>
 
       {erro && (
-        <p style={{ color: 'red' }}>{erro}</p>
+        <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
+          {erro}
+        </p>
       )}
 
-      <div>
-        <label htmlFor="nome">Nome</label>
-        <input
-          id="nome"
-          type="text"
-          value={nome}
-          onChange={e => setNome(e.target.value)}
-          required
-        />
-      </div>
+      <form className="produto-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="nome">Nome</label>
+          <input
+            id="nome"
+            className="form-input"
+            type="text"
+            placeholder="Ex: Teclado Mecânico"
+            value={nome}
+            onChange={e => {
+              if (erro) setErro(null)
+              setNome(e.target.value)
+            }}
+            disabled={loading}
+            required
+            autoFocus
+          />
+        </div>
 
-      <div>
-        <label htmlFor="preco">Preço</label>
-        <input
-          id="preco"
-          type="number"
-          step="0.01"
-          value={preco}
-          onChange={e => setPreco(e.target.value)}
-          required
-        />
-      </div>
+        <div className="form-group">
+          <label htmlFor="preco">Preço (R$)</label>
+          <input
+            id="preco"
+            className="form-input"
+            type="number"
+            step="0.01"
+            min="0.01"
+            placeholder="0.00"
+            value={preco}
+            onChange={e => {
+              if (erro) setErro(null)
+              setPreco(e.target.value)
+            }}
+            disabled={loading}
+            required
+          />
+        </div>
 
-      <button type="submit" disabled={loading}>
-        {loading ? 'Salvando...' : 'Cadastrar'}
-      </button>
-    </form>
+        <button type="submit" className="btn-cadastrar" disabled={loading}>
+          {loading ? 'Salvando...' : 'Cadastrar'}
+        </button>
+      </form>
+    </div>
   )
 }
+
 export default ProdutoForm

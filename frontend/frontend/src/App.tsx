@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { type Produto } from './types/produto.ts'
+import type { Produto } from './types/Produto'
 import { produtoService } from './services/produtoservice.ts'
 import ProdutoForm from './components/produtoform.tsx'
 import ProdutoList from './components/produtolist.tsx'
+import './components/produto.css'
 
 function App() {
   const [produtos, setProdutos] = useState<Produto[]>([])
@@ -26,12 +27,28 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <h1>Gestão de Produtos</h1>
-      <ProdutoForm onProdutoCriado={carregarProdutos} />
-      <h2>Produtos Cadastrados</h2>
-      {erro && <p style={{ color: 'red' }}>{erro}</p>}
-      <ProdutoList produtos={produtos} loading={loading} />
+    <div className="app-container">
+      {/* Título Principal */}
+      <h1 className="app-titulo">Gestão de Produtos</h1>
+
+      {/* Grid de Layout Lado a Lado */}
+      <main className="app-layout">
+        {/* Coluna 1: Formulário de Cadastro */}
+        <ProdutoForm onProdutoCriado={carregarProdutos} />
+
+        {/* Coluna 2: Título da Seção e Lista de Produtos */}
+        <div className="lista-coluna">
+          <h2 className="secao-titulo">Produtos Cadastrados</h2>
+
+          {erro && (
+            <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
+              {erro}
+            </p>
+          )}
+
+          <ProdutoList produtos={produtos} loading={loading} />
+        </div>
+      </main>
     </div>
   )
 }

@@ -1,30 +1,38 @@
-import { type Produto } from '../types/produto.ts'
+import type { Produto } from '../types/Produto';
+import './produto.css';
 
-// Dados que o componente PAI precisa fornecer
 interface Props {
-  produtos: Produto[]
-  loading: boolean
+  produtos: Produto[];
+  loading: boolean;
 }
 
 function ProdutoList({ produtos, loading }: Props) {
-
-  if (loading)
-    return <p>Carregando...</p>
-
-  if (produtos.length === 0)
-    return <p>Nenhum produto cadastrado ainda.</p>
+  const listaProdutos = Array.isArray(produtos) ? produtos : [];
 
   return (
-    <ul>
-      {produtos.map(p => (
-        <li key={p.id}>
-          <strong>{p.nome}</strong>
-          {' — '}
-          R$ {p.preco.toFixed(2)}
-        </li>
-      ))}
-    </ul>
-  )
+    <div className="produto-container">
+      {/* 1. O título fica AQUI DENTRO da caixa branca */}
+      <h2 className="secao-titulo">Produtos Cadastrados</h2>
+
+      {/* 2. Conteúdo exibido dentro da caixa */}
+      {loading ? (
+        <p className="produto-vazio">Carregando...</p>
+      ) : listaProdutos.length === 0 ? (
+        <p className="produto-vazio">Nenhum produto cadastrado ainda.</p>
+      ) : (
+        <ul className="produto-lista">
+          {listaProdutos.map((p) => (
+            <li key={p.id} className="produto-item">
+              <span className="produto-nome">{p.nome}</span>
+              <span className="produto-preco">
+                R$ {p.preco?.toFixed(2)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
-export default ProdutoList
+export default ProdutoList;

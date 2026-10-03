@@ -1,0 +1,235 @@
+/* =========================================================
+   1. PAINEL DE CORES (Altere as cores apenas aqui!)
+   ========================================================= */
+:root {
+  /* Altere estas cores para mudar o visual de tudo: */
+  --cor-primaria: #0a60ff;       /* Cor dos botões e barra do título */
+  --cor-primaria-hover: #074fd4; /* Cor ao passar o mouse no botão */
+  --cor-sucesso: #10b981;        /* Cor do Preço e Mensagem de Sucesso */
+  --cor-erro: #ef4444;           /* Cor das Mensagens de Erro */
+
+  --fundo-pagina: #f8fafc;       /* Cor de fundo da tela toda */
+  --fundo-cartao: #ffffff;       /* Fundo do formulário e dos itens */
+  --texto-titulo: #0f172a;       /* Cor dos títulos */
+  --texto-corpo: #334155;        /* Cor do texto comum */
+  --borda-cor: #e2e8f0;          /* Cor das bordas */
+
+  --raio-borda: 10px;           /* Arredondamento dos cantos */
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+   2. TEMA ESCURO (Reescreve as variáveis do :root)
+   ========================================================= */
+body.dark-mode {
+  --fundo-pagina: #0f172a;       /* Fundo escuro profundo */
+  --fundo-cartao: #1e293b;       /* Fundo dos cartões escuro */
+  --texto-titulo: #f8fafc;       /* Texto branco/claro */
+  --texto-corpo: #cbd5e1;        /* Texto secundário claro */
+  --borda-cor: #334155;          /* Bordas sutis no escuro */
+  --sombra: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo do Botão de Alternar Tema */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btn-tema {
+  background-color: var(--fundo-cartao);
+  color: var(--texto-titulo);
+  border: 1px solid var(--borda-cor);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--sombra);
+  transition: all 0.2s ease;
+}
+
+.btn-tema:hover {
+  border-color: var(--cor-primaria);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   3. APLICAÇÃO DOS ESTILOS
+   ========================================================= */
+
+body {
+  background-color: var(--fundo-pagina);
+  color: var(--texto-corpo);
+  margin: 0;
+}
+
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Título Principal */
+.app-titulo {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--texto-titulo);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.app-titulo::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--cor-primaria);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Títulos das Seções */
+.secao-titulo, 
+.produto-titulo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--texto-titulo);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--borda-cor);
+  padding-bottom: 8px;
+}
+
+/* Layout Grid */
+.app-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.lista-coluna {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cartão do Formulário */
+.produto-container {
+  background-color: var(--fundo-cartao);
+  padding: 24px;
+  border-radius: var(--raio-borda);
+  border: 1px solid var(--borda-cor);
+  box-shadow: var(--sombra);
+}
+
+.produto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Elevação do cartão de produto ao passar o mouse */
+.produto-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produto-item:hover {
+  transform: translateY(-2px); /* Sobe 2 pixels */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Animação suave no foco dos campos de texto */
+.form-input {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--texto-corpo);
+}
+
+.form-input {
+  padding: 10px 12px;
+  border: 1px solid var(--borda-cor);
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--fundo-cartao);
+  color: var(--texto-corpo);
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--cor-primaria);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.btn-cadastrar {
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.btn-cadastrar:hover:not(:disabled) {
+  background-color: var(--cor-primaria-hover);
+}
+
+.btn-cadastrar:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Lista de Produtos */
+.produto-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.produto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background-color: var(--fundo-cartao);
+  border: 1px solid var(--borda-cor);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra);
+}
+
+.produto-nome {
+  font-weight: 600;
+  color: var(--texto-titulo);
+}
+
+.produto-preco {
+  font-weight: 700;
+  color: var(--cor-sucesso);
+}
+
+/* Responsividade (Celular) */
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+}

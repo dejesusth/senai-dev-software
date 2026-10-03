@@ -1,6 +1,6 @@
 // src/services/produtoService.ts
 import api from './api'
-import type { Produto, NovoProduto } from '../types/produto.ts'
+import type { Produto, NovoProduto } from '../types/Produto.ts'
 
 export const produtoService = {
 
