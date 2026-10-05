@@ -6,19 +6,30 @@ interface Props {
 }
 
 function ClienteList({ clientes, loading }: Props) {
-  if (loading) return <p>Carregando...</p>
-  if (clientes.length === 0)
-    return <p>Nenhum cliente cadastrado ainda.</p>
-
   return (
-    <ul>
-      {clientes.map(c => (
-        <li key={c.id}>
-          <strong>{c.nome}</strong> — {c.email}
-          {c.cpf && <span> (CPF: {c.cpf})</span>}
-        </li>
-      ))}
-    </ul>
+    <div className="card">
+      <h2 className="card-title">Clientes Cadastrados</h2>
+
+      {loading ? (
+        <p style={{ color: '#64748b' }}>Carregando...</p>
+      ) : clientes.length === 0 ? (
+        <p style={{ color: '#64748b' }}>Nenhum cliente cadastrado ainda.</p>
+      ) : (
+        <div className="list-container">
+          {clientes.map(c => (
+            <div key={c.id} className="list-item">
+              <div>
+                <div className="list-item-title">{c.nome}</div>
+                <div className="list-item-subtitle">
+                  {c.email}{c.cpf ? ` • CPF: ${c.cpf}` : ''}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
+
 export default ClienteList

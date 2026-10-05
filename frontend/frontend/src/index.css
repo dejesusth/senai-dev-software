@@ -1,0 +1,201 @@
+/* Resets globais para ocupar 100% da ecrã */
+/* Força a aplicação a ocupar 100% da tela sem margens externas */
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100vh !important;
+  box-sizing: border-box !important;
+}
+
+#root {
+/* Anula as restrições de largura e espaçamento padrão do Vite */
+#root {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Estrutura do Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #f8fafc;
+}
+
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  background-color: #0f172a;
+  color: #fff;
+  padding: 28px 20px;
+}
+
+.sidebar h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 32px;
+  color: #f8fafc;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  color: #94a3b8;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background-color: #1e293b;
+  color: #38bdf8;
+}
+
+.content {
+  flex: 1;
+  padding: 32px 40px;
+  max-width: 1200px;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+/* Card Containers */
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1e293b;
+}
+
+/* Formulários e Inputs */
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Botões */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-primary:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Listas e Tabelas */
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.list-item-title {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.list-item-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.badge-price {
+  font-weight: 700;
+  color: #059669;
+}
