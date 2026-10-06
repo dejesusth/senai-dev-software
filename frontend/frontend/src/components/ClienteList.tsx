@@ -26,6 +26,7 @@ export default function ClienteList({ clientes, loading }: ClienteListProps) {
         <div key={cliente.id || Math.random()} className="cliente-card">
           <h3>{cliente.nome}</h3>
           <p>{cliente.email}</p>
+          <p>{cliente.cpf}</p>
         </div>
       ))}
     </div>

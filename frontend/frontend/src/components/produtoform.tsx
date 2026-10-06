@@ -9,6 +9,7 @@ interface Props {
 function ProdutoForm({ onProdutoCriado }: Props) {
   const [nome, setNome] = useState('')
   const [preco, setPreco] = useState('')
+  const [estoque, setEstoque] = useState<number | string>(0)
   const [loading, setLoading] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
 
@@ -20,9 +21,11 @@ function ProdutoForm({ onProdutoCriado }: Props) {
       await produtoService.criar({
         nome,
         preco: Number(preco),
+        estoque: Number(estoque)
       })
       setNome('')
       setPreco('')
+      setEstoque(0)
       onProdutoCriado()
     } catch {
       setErro('Erro ao cadastrar. Tente novamente.')
@@ -78,6 +81,26 @@ function ProdutoForm({ onProdutoCriado }: Props) {
             required
           />
         </div>
+
+        {/* ----------------- CAMPO DE ESTOQUE AQUI ----------------- */}
+        <div className="form-group">
+          <label htmlFor="estoque">Estoque (Qtd)</label>
+          <input
+            id="estoque"
+            className="form-input"
+            type="number"
+            min="0"
+            placeholder="0"
+            value={estoque}
+            onChange={e => {
+              if (erro) setErro(null)
+              setEstoque(e.target.value)
+            }}
+            disabled={loading}
+            required
+          />
+        </div>
+        {/* --------------------------------------------------------- */}
 
         <button type="submit" className="btn-cadastrar" disabled={loading}>
           {loading ? 'Salvando...' : 'Cadastrar'}

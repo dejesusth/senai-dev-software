@@ -131,21 +131,6 @@ body {
   gap: 16px;
 }
 
-/* Elevação do cartão de produto ao passar o mouse */
-.produto-item {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.produto-item:hover {
-  transform: translateY(-2px); /* Sobe 2 pixels */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* Animação suave no foco dos campos de texto */
-.form-input {
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
 .form-group {
   display: flex;
   flex-direction: column;
@@ -166,7 +151,7 @@ body {
   outline: none;
   background-color: var(--fundo-cartao);
   color: var(--texto-corpo);
-  transition: all 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-input:focus {
@@ -215,11 +200,33 @@ body {
   border: 1px solid var(--borda-cor);
   border-radius: var(--raio-borda);
   box-shadow: var(--sombra);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produto-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .produto-nome {
   font-weight: 600;
   color: var(--texto-titulo);
+}
+
+/* Agrupamento do Estoque e do Preço no lado direito */
+.produto-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.produto-estoque {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cor-sucesso);
+  background-color: rgba(16, 185, 129, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
 }
 
 .produto-preco {

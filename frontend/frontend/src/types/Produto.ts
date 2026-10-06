@@ -6,6 +6,7 @@ export interface Produto {
   id: number
   nome: string
   preco: number
+  estoque: number;
 }
 
 // Tipo para criação — sem o id (gerado pela MinhaAPI)
