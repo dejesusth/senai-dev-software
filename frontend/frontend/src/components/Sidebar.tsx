@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 export default function Sidebar() {
   return (
     <aside className="sidebar">
-      <h1>Meu App de Gerenciamento</h1>
+      <h1>StockFlow</h1>
       <nav>
         <NavLink 
           to="/produtos" 
