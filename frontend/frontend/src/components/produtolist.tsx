@@ -23,9 +23,9 @@ function ProdutoList({ produtos, loading }: Props) {
             <li key={p.id} className="produto-item">
               <span className="produto-nome">{p.nome}</span>
               <div className="produto-info">
-                <span className="produto-estoque">
-                  Estoque: {p.estoque ?? 0}
-                </span>
+              <span className={`produto-estoque ${p.estoque === 0 ? 'zerado' : p.estoque < 5 ? 'baixo' : ''}`}>
+              {p.estoque === 0 ? 'Sem estoque' : `Estoque: ${p.estoque}`}
+              </span>
                 <span className="produto-preco">
                 {Number(p.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </span>

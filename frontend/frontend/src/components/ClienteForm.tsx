@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { clienteService } from '../services/ClienteService'
+import './cliente.css'
 
 interface Props {
   onClienteCriado: () => void
 }
 
-export default function ClienteForm({ onClienteCriado }: Props) {
+function ClienteForm({ onClienteCriado }: Props) {
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [cpf, setCpf] = useState('')
@@ -30,51 +31,74 @@ export default function ClienteForm({ onClienteCriado }: Props) {
   }
 
   return (
-    <div className="card">
-      <h2 className="card-title">Cadastrar Cliente</h2>
-      {erro && <p style={{ color: '#ef4444', marginBottom: '12px' }}>{erro}</p>}
-      
-      <form onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="nome">Nome</label>
-            <input
-              id="nome"
-              placeholder="Ex: João Silva"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-            />
-          </div>
+    <div className="cliente-container">
+      <h2 className="secao-titulo">Cadastrar Cliente</h2>
 
-          <div className="form-group">
-            <label htmlFor="email">E-mail</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Ex: joao@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+      {erro && (
+        <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
+          {erro}
+        </p>
+      )}
 
-          <div className="form-group">
-            <label htmlFor="cpf">CPF</label>
-            <input
-              id="cpf"
-              placeholder="000.000.000-00"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
-              required
-            />
-          </div>
+      <form className="cliente-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="nome">Nome</label>
+          <input
+            id="nome"
+            className="form-input"
+            type="text"
+            placeholder="Ex: João Silva"
+            value={nome}
+            onChange={e => {
+              if (erro) setErro(null)
+              setNome(e.target.value)
+            }}
+            disabled={loading}
+            required
+            autoFocus
+          />
         </div>
 
-        <button type="submit" className="btn-primary" disabled={loading} style={{ marginTop: '16px' }}>
-          {loading ? 'Cadastrando...' : 'Cadastrar Cliente'}
+        <div className="form-group">
+          <label htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            className="form-input"
+            type="email"
+            placeholder="Ex: joao@email.com"
+            value={email}
+            onChange={e => {
+              if (erro) setErro(null)
+              setEmail(e.target.value)
+            }}
+            disabled={loading}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="cpf">CPF</label>
+          <input
+            id="cpf"
+            className="form-input"
+            type="text"
+            placeholder="000.000.000-00"
+            value={cpf}
+            onChange={e => {
+              if (erro) setErro(null)
+              setCpf(e.target.value)
+            }}
+            disabled={loading}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn-cadastrar" disabled={loading}>
+          {loading ? 'Salvando...' : 'Cadastrar'}
         </button>
       </form>
     </div>
   )
 }
+
+export default ClienteForm

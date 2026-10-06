@@ -1,34 +1,39 @@
-import type { Cliente } from '../types/Cliente'
+import type { Cliente } from '../types/Cliente';
+import './cliente.css';
 
-interface ClienteListProps {
-  clientes: Cliente[]
-  loading?: boolean
+interface Props {
+  clientes: Cliente[];
+  loading: boolean;
 }
 
-export default function ClienteList({ clientes, loading }: ClienteListProps) {
-  // 1. Tratamento do estado de carregamento
-  if (loading) {
-    return <p>A carregar clientes...</p>
-  }
+function ClienteList({ clientes, loading }: Props) {
+  const listaClientes = Array.isArray(clientes) ? clientes : [];
 
-  // 2. Garantia defensiva: garante que listaValida é SEMPRE um Array
-  const listaValida = Array.isArray(clientes) ? clientes : []
-
-  // 3. Caso a lista esteja vazia
-  if (listaValida.length === 0) {
-    return <p>Nenhum cliente encontrado.</p>
-  }
-
-  // 4. Renderização segura com .map()
   return (
-    <div className="cliente-list">
-      {listaValida.map((cliente) => (
-        <div key={cliente.id || Math.random()} className="cliente-card">
-          <h3>{cliente.nome}</h3>
-          <p>{cliente.email}</p>
-          <p>{cliente.cpf}</p>
+    <div className="cliente-container">
+      <h2 className="secao-titulo">Clientes Cadastrados</h2>
+
+      {loading ? (
+        <p className="cliente-vazio">A carregar clientes...</p>
+      ) : listaClientes.length === 0 ? (
+        <p className="cliente-vazio">Nenhum cliente cadastrado ainda.</p>
+      ) : (
+        <div className="cliente-grid">
+          {listaClientes.map((c) => (
+            <div key={c.id} className="cliente-card">
+              <div className="cliente-header">
+                <span className="cliente-nome">{c.nome}</span>
+              </div>
+              <div className="cliente-detalhes">
+                <span className="cliente-email">📧 {c.email}</span>
+                <span className="cliente-cpf">🪪 {c.cpf}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
-  )
+  );
 }
+
+export default ClienteList;
