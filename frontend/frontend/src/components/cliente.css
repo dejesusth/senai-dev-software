@@ -1,27 +1,77 @@
 /* =========================================================
-   ESTILOS - GESTÃO DE CLIENTES
+   ESTILOS - GESTÃO DE CLIENTES (PADRÃO PRODUTOS)
    ========================================================= */
 
-/* Contentor do Formulário de Cliente (Igual ao de Produtos) */
-.cliente-container {
-  background-color: var(--fundo-cartao);
-  padding: 28px;
-  border-radius: var(--raio-borda);
-  border: 1px solid var(--borda-cor);
-  box-shadow: var(--sombra-card);
+/* Garantir box-sizing correto em todos os elementos */
+.cliente-card-box *, 
+.cliente-card-box *::before, 
+.cliente-card-box *::after {
+  box-sizing: border-box;
 }
 
-/* Formulário empilhado na vertical */
+/* Cartão do Formulário e Cartão da Lista */
+.cliente-card-box {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px; /* Espaçamento entre os dois cartões */
+  width: 100%;
+}
+
+/* Título da Seção com Linha Divisória */
+.secao-titulo-cliente {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Estrutura do Formulário */
 .cliente-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
+  width: 100%;
 }
 
-/* Botão de Cadastrar Padronizado */
-.cliente-form .btn-cadastrar {
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   width: 100%;
-  background-color: var(--cor-primaria);
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #ffffff;
+}
+
+.form-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* BOTÃO 100% LARGURA (Ocupa toda a base do cartão) */
+.btn-cadastrar-cliente {
+  width: 100% !important;
+  display: block;
+  background-color: #2563eb;
   color: #ffffff;
   padding: 12px 20px;
   border: none;
@@ -29,40 +79,79 @@
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s, transform 0.1s;
   margin-top: 8px;
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+  text-align: center;
 }
 
-.cliente-form .btn-cadastrar:hover:not(:disabled) {
-  background-color: var(--cor-primaria-hover);
-  transform: translateY(-1px);
+.btn-cadastrar-cliente:hover:not(:disabled) {
+  background-color: #1d4ed8;
 }
 
-.cliente-form .btn-cadastrar:disabled {
-  background-color: var(--texto-mutado);
+.btn-cadastrar-cliente:disabled {
+  background-color: #94a3b8;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
-/* Cartão Individual do Cliente */
-.cliente-card {
-  background-color: var(--fundo-cartao);
-  border: 1px solid var(--borda-cor);
-  border-radius: 10px;
-  padding: 16px 20px;
+/* Lista de Clientes Cadastrados */
+.cliente-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  
-  /* 1. ADICIONE ESTA LINHA para o movimento ficar suave */
-  transition: all 0.2s ease; 
+  gap: 12px;
 }
 
-/* 2. ADICIONE ESTE BLOCO LOGO ABAIXO */
-.cliente-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--cor-primaria);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.cliente-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cliente-item:hover {
+  transform: translateY(-2px);
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cliente-nome {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.cliente-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.875rem;
+}
+
+.cliente-email {
+  color: #64748b;
+}
+
+.cliente-divisor {
+  color: #cbd5e1;
+}
+
+.cliente-cpf {
+  font-weight: 600;
+  color: #2563eb;
+  background-color: #eff6ff;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+}
+
+.cliente-vazio {
+  text-align: center;
+  color: #94a3b8;
+  padding: 20px 0;
 }

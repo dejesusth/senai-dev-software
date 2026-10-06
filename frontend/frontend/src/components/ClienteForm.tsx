@@ -30,75 +30,74 @@ function ClienteForm({ onClienteCriado }: Props) {
     }
   }
 
-  return (
-    <div className="cliente-container">
-      <h2 className="secao-titulo">Cadastrar Cliente</h2>
+return (
+  <div className="cliente-card-box">
+    <h2 className="secao-titulo-cliente">Cadastrar Cliente</h2>
 
-      {erro && (
-        <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
-          {erro}
-        </p>
-      )}
+    {erro && (
+      <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
+        {erro}
+      </p>
+    )}
 
-      <form className="cliente-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="nome">Nome</label>
-          <input
-            id="nome"
-            className="form-input"
-            type="text"
-            placeholder="Ex: João Silva"
-            value={nome}
-            onChange={e => {
-              if (erro) setErro(null)
-              setNome(e.target.value)
-            }}
-            disabled={loading}
-            required
-            autoFocus
-          />
-        </div>
+    <form className="cliente-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="nome">Nome</label>
+        <input
+          id="nome"
+          className="form-input"
+          type="text"
+          placeholder="Ex: João Silva"
+          value={nome}
+          onChange={e => {
+            if (erro) setErro(null)
+            setNome(e.target.value)
+          }}
+          disabled={loading}
+          required
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="email">E-mail</label>
-          <input
-            id="email"
-            className="form-input"
-            type="email"
-            placeholder="Ex: joao@email.com"
-            value={email}
-            onChange={e => {
-              if (erro) setErro(null)
-              setEmail(e.target.value)
-            }}
-            disabled={loading}
-            required
-          />
-        </div>
+      <div className="form-group">
+        <label htmlFor="email">E-mail</label>
+        <input
+          id="email"
+          className="form-input"
+          type="email"
+          placeholder="Ex: joao@email.com"
+          value={email}
+          onChange={e => {
+            if (erro) setErro(null)
+            setEmail(e.target.value)
+          }}
+          disabled={loading}
+          required
+        />
+      </div>
 
-        <div className="form-group">
-          <label htmlFor="cpf">CPF</label>
-          <input
-            id="cpf"
-            className="form-input"
-            type="text"
-            placeholder="000.000.000-00"
-            value={cpf}
-            onChange={e => {
-              if (erro) setErro(null)
-              setCpf(e.target.value)
-            }}
-            disabled={loading}
-            required
-          />
-        </div>
+      <div className="form-group">
+        <label htmlFor="cpf">CPF</label>
+        <input
+          id="cpf"
+          className="form-input"
+          type="text"
+          placeholder="000.000.000-00"
+          value={cpf}
+          onChange={e => {
+            if (erro) setErro(null)
+            setCpf(e.target.value)
+          }}
+          disabled={loading}
+          required
+        />
+      </div>
 
-        <button type="submit" className="btn-cadastrar" disabled={loading}>
-          {loading ? 'Salvando...' : 'Cadastrar'}
-        </button>
-      </form>
-    </div>
-  )
+      <button type="submit" className="btn-cadastrar-cliente" disabled={loading}>
+        {loading ? 'Salvando...' : 'Cadastrar'}
+      </button>
+    </form>
+  </div>
+)
 }
 
 export default ClienteForm
