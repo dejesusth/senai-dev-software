@@ -6,5 +6,4 @@ export interface Cliente {
   ativo: boolean
 }
 
-export type NovoCliente =
-  Omit<Cliente, 'id' | 'ativo'>
+export type NovoCliente = Omit<Cliente, 'id' | 'ativo'>

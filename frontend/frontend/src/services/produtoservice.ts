@@ -1,9 +1,7 @@
-// src/services/produtoService.ts
 import api from './api'
 import type { Produto, NovoProduto } from '../types/Produto.ts'
 
 export const produtoService = {
-
   listar: async (): Promise<Produto[]> => {
     const { data } = await api.get('/produto')
     return data

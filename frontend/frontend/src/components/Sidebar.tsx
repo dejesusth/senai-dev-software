@@ -16,8 +16,6 @@ export default function Sidebar() {
     </h1>
   </div>
 
-  {/* Ícone de recolher (seta) à direita */}
-  <span className="collapse-icon">⇇</span>
 </div></h1>
       <nav>
         <NavLink 
@@ -26,11 +24,19 @@ export default function Sidebar() {
         >
           📦 Produtos
         </NavLink>
+
         <NavLink 
           to="/clientes" 
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
           👤 Clientes
+        </NavLink>
+
+        <NavLink 
+          to="/vendas" 
+          className={({ isActive }) => (isActive ? 'active' : '')}
+        >
+          💵 Vendas
         </NavLink>
       </nav>
     </aside>

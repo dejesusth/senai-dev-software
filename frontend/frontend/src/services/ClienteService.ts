@@ -6,6 +6,7 @@ export const clienteService = {
     const { data } = await api.get('/cliente')
     return data
   },
+  
   criar: async (c: NovoCliente): Promise<Cliente> => {
     const { data } = await api.post('/cliente', c)
     return data
