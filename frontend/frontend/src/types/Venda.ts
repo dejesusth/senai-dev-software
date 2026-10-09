@@ -1,10 +1,10 @@
 export interface Venda {
   id: number
-  data_venda: Date
+  dataVenda: Date
   quantidade: number
-  valor_total: number
-  cliente_id: number
-  produto_id: number
+  valorTotal: number
+  clienteId: number
+  produtoId: number
 }
 
 export type NovaVenda = Omit<Venda, 'id'>

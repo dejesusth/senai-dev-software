@@ -7,11 +7,11 @@ interface Props {
 }
 
 function VendaForm({ onVendaCriada }: Props) {
-  const [data_venda, setDataVenda] = useState<Date | null>(null)
+  const [dataVenda, setDataVenda] = useState<Date | null>(null)
   const [quantidade, setQuantidade] = useState<number | null>(null)
-  const [valor_total, setValorTotal] = useState<number | null>(null)
-  const [produto_id, setProdutoId] = useState<number | null>(null)
-  const [cliente_id, setClienteId] = useState<number | null>(null)
+  const [valorTotal, setValorTotal] = useState<number | null>(null)
+  const [produtoId, setProdutoId] = useState<number | null>(null)
+  const [clienteId, setClienteId] = useState<number | null>(null)
   const [loading, setLoading] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
 
@@ -20,7 +20,7 @@ function VendaForm({ onVendaCriada }: Props) {
     setErro(null)
     try {
       setLoading(true)
-      await VendaService.criar({ data_venda, quantidade, valor_total, produto_id, cliente_id })
+      await VendaService.criar({ dataVenda, quantidade, valorTotal, produtoId, clienteId })
       setDataVenda(null)
       setQuantidade(null)
       setValorTotal(null)
@@ -46,13 +46,13 @@ return (
 
     <form className="venda-form" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="data_venda">Data da Venda</label>
+        <label htmlFor="dataVenda">Data da Venda</label>
         <input
-          id="data_venda"
+          id="dataVenda"
           className="form-input"
           type="date"
           placeholder="Ex: 2026-09-18 19:43:17"
-          value={data_venda ? data_venda.toISOString().split('T')[0] : ''}
+          value={dataVenda ? dataVenda.toISOString().split('T')[0] : ''}
           onChange={e => {
             if (erro) setErro(null)
             setDataVenda(new Date(e.target.value))
@@ -69,7 +69,7 @@ return (
           className="form-input"
           type="number"
           placeholder="Ex: 10"
-          value={quantidade}
+          value={quantidade || ''} 
           onChange={e => {
             if (erro) setErro(null)
             setQuantidade(parseInt(e.target.value))
@@ -80,13 +80,13 @@ return (
       </div>
 
       <div className="form-group">
-        <label htmlFor="valor_total">Valor Total</label>
+        <label htmlFor="valorTotal">Valor Total</label>
         <input
-          id="valor_total"
+          id="valorTotal"
           className="form-input"
           type="text"
           placeholder="Ex: 100.00"
-          value={valor_total}
+          value={valorTotal !== null ? valorTotal.toFixed(2) : ''}
           onChange={e => {
             if (erro) setErro(null)
             setValorTotal(parseFloat(e.target.value))
@@ -97,13 +97,13 @@ return (
       </div>
 
         <div className="form-group">
-            <label htmlFor="produto_id">ID do Produto</label>
+            <label htmlFor="produtoId">ID do Produto</label>
             <input
-                id="produto_id"
+                id="produtoId"
                 className="form-input"
                 type="number"
                 placeholder="Ex: 1"
-                value={produto_id}
+                value={produtoId || ''}
                 onChange={e => {
                     if (erro) setErro(null)
                     setProdutoId(parseInt(e.target.value))
@@ -114,13 +114,13 @@ return (
         </div>
 
         <div className="form-group">
-            <label htmlFor="cliente_id">ID do Cliente</label>
+            <label htmlFor="clienteId">ID do Cliente</label>
             <input
-                id="cliente_id"
+                id="clienteId"
                 className="form-input"
                 type="number"
                 placeholder="Ex: 1"
-                value={cliente_id}
+                value={clienteId || ''}
                 onChange={e => {
                     if (erro) setErro(null)
                     setClienteId(parseInt(e.target.value))
