@@ -7,9 +7,7 @@ interface Props {
 }
 
 function VendaForm({ onVendaCriada }: Props) {
-  const [dataVenda, setDataVenda] = useState<Date | null>(null)
   const [quantidade, setQuantidade] = useState<number | null>(null)
-  const [valorTotal, setValorTotal] = useState<number | null>(null)
   const [produtoId, setProdutoId] = useState<number | null>(null)
   const [clienteId, setClienteId] = useState<number | null>(null)
   const [loading, setLoading] = useState(false)
@@ -20,10 +18,8 @@ function VendaForm({ onVendaCriada }: Props) {
     setErro(null)
     try {
       setLoading(true)
-      await VendaService.criar({ dataVenda, quantidade, valorTotal, produtoId, clienteId })
-      setDataVenda(null)
+      await VendaService.criar({ quantidade, produtoId, clienteId })
       setQuantidade(null)
-      setValorTotal(null)
       setProdutoId(null)
       setClienteId(null)
       onVendaCriada()
@@ -45,22 +41,6 @@ return (
     )}
 
     <form className="venda-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="dataVenda">Data da Venda</label>
-        <input
-          id="dataVenda"
-          className="form-input"
-          type="date"
-          placeholder="Ex: 2026-09-18 19:43:17"
-          value={dataVenda ? dataVenda.toISOString().split('T')[0] : ''}
-          onChange={e => {
-            if (erro) setErro(null)
-            setDataVenda(new Date(e.target.value))
-          }}
-          disabled={loading}
-          required
-        />
-      </div>
 
       <div className="form-group">
         <label htmlFor="quantidade">Quantidade</label>
@@ -73,23 +53,6 @@ return (
           onChange={e => {
             if (erro) setErro(null)
             setQuantidade(parseInt(e.target.value))
-          }}
-          disabled={loading}
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="valorTotal">Valor Total</label>
-        <input
-          id="valorTotal"
-          className="form-input"
-          type="text"
-          placeholder="Ex: 100.00"
-          value={valorTotal !== null ? valorTotal.toFixed(2) : ''}
-          onChange={e => {
-            if (erro) setErro(null)
-            setValorTotal(parseFloat(e.target.value))
           }}
           disabled={loading}
           required
