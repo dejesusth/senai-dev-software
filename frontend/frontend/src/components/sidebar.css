@@ -1,0 +1,12 @@
+/* src/sidebar.css */
+
+/* Aplica a fonte do Google Fonts a TUDO dentro da sidebar */
+.sidebar {
+  font-family: 'Poppins', sans-serif; /* 👈 Substitua pelo nome da fonte que escolheu */
+}
+
+/* (Opcional) Estilo específico para o logo/marca dentro da sidebar */
+.sidebar-logo {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
