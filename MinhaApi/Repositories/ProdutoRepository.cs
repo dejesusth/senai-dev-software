@@ -1,59 +1,62 @@
 using MinhaApi.Models;
 using MySqlConnector;
 namespace MinhaApi.Repositories;
+
 public class ProdutoRepository : IProdutoRepository
 {
     private readonly string _connectionString;
-    public ProdutoRepository(IConfiguration config) 
+    public ProdutoRepository(IConfiguration config)
         => _connectionString = config.GetConnectionString("DefaultConnection")!;
 
-      public IEnumerable<Produto> GetAll() {
-      var lista = new List<Produto>();
-      using var conn = new MySqlConnection(_connectionString);
-      conn.Open();
+    public IEnumerable<Produto> GetAll()
+    {
+        var lista = new List<Produto>();
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
 
-      string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos";
+        string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos";
+        using var cmd = new MySqlCommand(sql, conn);
+        using var reader = cmd.ExecuteReader();
 
-      using var cmd = new MySqlCommand(sql, conn);
-      using var reader = cmd.ExecuteReader();
-
-      while (reader.Read()) {
-          lista.Add(new Produto {
-              Id = reader.GetInt32("id"),
-              Nome = reader.GetString("nome"),
-              Preco = reader.GetDecimal("preco"),
-              Estoque = reader.GetInt32("estoque"),
-              Ativo = reader.GetBoolean("ativo")
-          });
-      }
-      return lista;
-  }
+        while (reader.Read())
+        {
+            lista.Add(new Produto
+            {
+                Id = reader.GetInt32("id"),
+                Nome = reader.GetString("nome"),
+                Preco = reader.GetDecimal("preco"),
+                Estoque = reader.GetInt32("estoque"),
+                Ativo = reader.GetBoolean("ativo")
+            });
+        }
+        return lista;
+    }
     public Produto? GetById(int id)
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
-      string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos";
-    
-    using var cmd = new MySqlCommand(sql, conn);
-    cmd.Parameters.AddWithValue("@Id", id);
+        string sql = "SELECT id, nome, preco, estoque, ativo FROM produtos WHERE id = @Id";
 
-    using var reader = cmd.ExecuteReader();
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@Id", id);
 
-    if (reader.Read())
-    {
-        return new Produto 
+        using var reader = cmd.ExecuteReader();
+
+        if (reader.Read())
         {
-              Id = reader.GetInt32("id"),
-              Nome = reader.GetString("nome"),
-              Preco = reader.GetDecimal("preco"),
-              Estoque = reader.GetInt32("estoque"),
-              Ativo = reader.GetBoolean("ativo"),
-        };
-    }
+            return new Produto
+            {
+                Id = reader.GetInt32("id"),
+                Nome = reader.GetString("nome"),
+                Preco = reader.GetDecimal("preco"),
+                Estoque = reader.GetInt32("estoque"),
+                Ativo = reader.GetBoolean("ativo"),
+            };
+        }
 
-    return null;
-}
+        return null;
+    }
 
     public void Add(Produto p)
     {

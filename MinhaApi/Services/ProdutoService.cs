@@ -11,7 +11,7 @@ public class ProdutoService : IProdutoService
 
     public Produto? GetById(int id) => _repo.GetById(id);
 
-    public Produto Add(Produto produto)
+    public Produto Create(Produto produto)
     {
         if (produto.Preco < 0)
             throw new ArgumentException("Preço inválido!");
@@ -30,12 +30,11 @@ public class ProdutoService : IProdutoService
 public bool Delete(int id)
 {
     var produto = _repo.GetById(id);
-    if (produto != null)
+    if (produto == null)
     {
-        _repo.Delete(id);
-        return true;
+        return false;
     }
-    return false;
+    _repo.Delete(id);
+    return true;
 }
-
 }

@@ -26,13 +26,13 @@ public class ClienteController : ControllerBase
         return Ok(cliente);
     }
 
-    [HttpPost] 
+    [HttpPost]
     public IActionResult Create([FromBody] Cliente cliente)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var criado = _service.Add(cliente);
+        var criado = _service.Create(cliente);
 
         return CreatedAtAction(nameof(GetById), new { id = criado.Id }, criado);
     }
@@ -51,7 +51,7 @@ public class ClienteController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        bool deletado = _service.Delete(id);
+        var deletado = _service.Delete(id);
 
         if (!deletado)
             return NotFound();
