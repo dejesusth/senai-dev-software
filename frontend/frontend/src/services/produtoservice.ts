@@ -11,5 +11,4 @@ export const produtoService = {
     const { data } = await api.post('/produto', p)
     return data
   }
-
 }
