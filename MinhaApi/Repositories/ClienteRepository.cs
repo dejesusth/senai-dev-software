@@ -1,13 +1,15 @@
 using MinhaApi.Models;
 using MySqlConnector;
 namespace MinhaApi.Repositories;
+
 public class ClienteRepository : IClienteRepository
 {
     private readonly string _connectionString;
-    public ClienteRepository(IConfiguration config) 
+    public ClienteRepository(IConfiguration config)
         => _connectionString = config.GetConnectionString("DefaultConnection")!;
 
-    public IEnumerable<Cliente> GetAll() {
+    public IEnumerable<Cliente> GetAll()
+    {
         var lista = new List<Cliente>();
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
@@ -16,8 +18,10 @@ public class ClienteRepository : IClienteRepository
         using var cmd = new MySqlCommand(sql, conn);
         using var reader = cmd.ExecuteReader();
 
-        while (reader.Read()) {
-            lista.Add(new Cliente {
+        while (reader.Read())
+        {
+            lista.Add(new Cliente
+            {
                 Id = reader.GetInt32("id"),
                 Nome = reader.GetString("nome"),
                 Email = reader.GetString("email"),
@@ -40,7 +44,7 @@ public class ClienteRepository : IClienteRepository
 
         if (reader.Read())
         {
-            return new Cliente 
+            return new Cliente
             {
                 Id = reader.GetInt32("id"),
                 Nome = reader.GetString("nome"),
@@ -78,6 +82,15 @@ public class ClienteRepository : IClienteRepository
         cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
         cmd.Parameters.AddWithValue("@Ativo", c.Ativo);
         cmd.Parameters.AddWithValue("@Id", c.Id);
+        cmd.ExecuteNonQuery();
+    }
+        public void Delete(int id)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        conn.Open();
+        string sql = "DELETE FROM clientes WHERE id = @Id";
+        using var cmd = new MySqlCommand(sql, conn);
+        cmd.Parameters.AddWithValue("@Id", id);
         cmd.ExecuteNonQuery();
     }
 }

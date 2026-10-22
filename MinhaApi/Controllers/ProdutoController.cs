@@ -32,26 +32,26 @@ public class ProdutoController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var criado = _service.Add(produto);
+        var criado = _service.Create(produto);
 
         return CreatedAtAction(nameof(GetById), new { id = criado.Id }, criado);
     }
 
     [HttpPut("{id}")]
     public IActionResult Update(int id, [FromBody] Produto produto)
-        {
-            var atualizado = _service.Update(id, produto);
+    {
+        var atualizado = _service.Update(id, produto);
 
-            if (atualizado == null)
-                return NotFound();
+        if (atualizado == null)
+            return NotFound();
 
-            return Ok(atualizado);
-        }
+        return Ok(atualizado);
+    }
 
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        bool deletado = _service.Delete(id);
+        var deletado = _service.Delete(id);
 
         if (!deletado)
             return NotFound();

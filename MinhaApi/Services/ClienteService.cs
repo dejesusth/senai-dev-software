@@ -11,36 +11,36 @@ public class ClienteService : IClienteService
 
     public Cliente? GetById(int id) => _repo.GetById(id);
 
-    public Cliente Add(Cliente cliente)
+    public Cliente Create(Cliente cliente)
     {
-        if(cliente.Nome == null)
+        if (cliente.Nome == null)
             throw new ArgumentException("Nome inválido!");
-        if(cliente.Email == null)
+        if (cliente.Email == null)
             throw new ArgumentException("Email inválido!");
         _repo.Add(cliente);
         return cliente;
     }
 
-    public Cliente? Update(int id, Cliente cliente)
+    public Cliente? Update(int id, Cliente c)
     {
         if (_repo.GetById(id) == null) return null;
-        cliente.Id = id;
-        _repo.Update(cliente);
-        return cliente;
+        c.Id = id;
+        _repo.Update(c);
+        return c;
     }
 
     public bool Delete(int id)
-{
-    var cliente = _repo.GetById(id);
-
-    if (cliente == null)
     {
-        return false;
-    }
-    cliente.Ativo = false;
+        var cliente = _repo.GetById(id);
 
-    _repo.Update(cliente);
-    
-    return true;
-}
+        if (cliente == null || !cliente.Ativo)
+        {
+            return false;
+        }
+        cliente.Ativo = false;
+
+        _repo.Update(cliente);
+
+        return true;
+    }
 }
