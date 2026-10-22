@@ -1,9 +1,7 @@
--- 1. Criação do Banco de Dados
 CREATE DATABASE IF NOT EXISTS minha_api_db;
 USE minha_api_db;
 
--- 2. Criação da Tabela de Produtos
-CREATE TABLE IF NOT EXISTS produtos (
+CREATE TABLE IF NOT EXISTS produtos(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     preco DECIMAL(10,2) NOT NULL,
@@ -11,19 +9,17 @@ CREATE TABLE IF NOT EXISTS produtos (
     ativo TINYINT(1) NOT NULL DEFAULT 1
 );
 
--- 3. Criação da Tabela de Clientes
-CREATE TABLE IF NOT EXISTS clientes (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS clientes(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    cpf VARCHAR(14),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    cpf VARCHAR(14) UNIQUE,
     ativo TINYINT(1) NOT NULL DEFAULT 1
 );
 
--- 4. Criação da Tabela de Vendas
-CREATE TABLE IF NOT EXISTS vendas (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-    data_venda DATETIME NOT NULL,
+CREATE TABLE IF NOT EXISTS vendas(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    data_venda DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     quantidade INT NOT NULL,
     valor_total DECIMAL(10,2) NOT NULL,
     produto_id INT NOT NULL,
@@ -33,25 +29,23 @@ CREATE TABLE IF NOT EXISTS vendas (
     FOREIGN KEY (cliente_id) REFERENCES clientes(id)
 );
 
--- 5. Criação da Tabela de Departamento
-CREATE TABLE IF NOT EXISTS departamento (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS departamentos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao VARCHAR(300) NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     ativo TINYINT(1) NOT NULL DEFAULT 1
 );
 
--- 6. Criação da Tabela de Funcionários
-CREATE TABLE IF NOT EXISTS funcionario (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS funcionarios(
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    cpf VARCHAR(14),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    cpf VARCHAR(14) UNIQUE,
     ativo TINYINT(1) NOT NULL DEFAULT 1,
     departamento_id INT NOT NULL,
     
-    FOREIGN KEY (departamento_id) REFERENCES departamento(id)
+    FOREIGN KEY (departamento_id) REFERENCES departamentos(id)
 );
 
 INSERT INTO produtos (nome, preco, estoque, ativo) 
@@ -61,4 +55,4 @@ VALUES
 
 INSERT INTO clientes (nome, email, cpf, ativo)
 VALUES
-('Thiago', 'thiago@email.com', '123.456.789-00',1);
+('Thiago', 'thiago@email.com', '123.456.789-00', 1);
