@@ -12,8 +12,9 @@ public class Funcionario
 
     public string Cpf { get; set; }
         = string.Empty;
-        
+
     public bool Ativo { get; set; }
         = true;
     public int DepartamentoId { get; set; }
+
 }

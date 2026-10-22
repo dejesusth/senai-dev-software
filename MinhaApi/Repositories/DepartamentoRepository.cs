@@ -12,7 +12,7 @@ public class DepartamentoRepository : IDepartamentoRepository
       using var conn = new MySqlConnection(_connectionString);
       conn.Open();
 
-      string sql = "SELECT id, nome, descricao, email, ativo FROM departamento";
+      string sql = "SELECT id, nome, descricao, email, ativo FROM departamentos";
 
       using var cmd = new MySqlCommand(sql, conn);
       using var reader = cmd.ExecuteReader();
@@ -33,7 +33,7 @@ public class DepartamentoRepository : IDepartamentoRepository
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
-      string sql = "SELECT id, nome, descricao, email, ativo FROM departamento";
+      string sql = "SELECT id, nome, descricao, email, ativo FROM departamentos WHERE id = @Id";
     
     using var cmd = new MySqlCommand(sql, conn);
     cmd.Parameters.AddWithValue("@Id", id);
@@ -60,7 +60,7 @@ public class DepartamentoRepository : IDepartamentoRepository
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
 
-        string sql = @"INSERT INTO departamento (nome, descricao, email, ativo)
+        string sql = @"INSERT INTO departamentos (nome, descricao, email, ativo)
                        VALUES (@Nome, @Descricao, @Email, @Ativo);
                        SELECT LAST_INSERT_ID();";
 
@@ -78,7 +78,7 @@ public class DepartamentoRepository : IDepartamentoRepository
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
-        string sql = @"UPDATE departamento 
+        string sql = @"UPDATE departamentos
                        SET nome = @Nome, descricao = @Descricao, email = @Email, ativo = @Ativo
                        WHERE id = @Id";
 
@@ -95,7 +95,7 @@ public class DepartamentoRepository : IDepartamentoRepository
     {
         using var conn = new MySqlConnection(_connectionString);
         conn.Open();
-        string sql = @"UPDATE departamento
+        string sql = @"UPDATE departamentos
                        SET desativado = @Ativo
                        WHERE id = @Id";
 
