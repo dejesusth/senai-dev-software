@@ -1,5 +1,6 @@
 using MinhaApi.Models;
 namespace MinhaApi.Repositories;
+
 public interface IProdutoRepository
 {
     IEnumerable<Produto> GetAll();

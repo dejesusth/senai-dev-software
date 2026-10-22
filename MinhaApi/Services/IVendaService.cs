@@ -1,8 +1,9 @@
-using MinhaApi.Models;
+using MinhaApi.DTOs;
 namespace MinhaApi.Services;
+
 public interface IVendaService
 {
-    IEnumerable<Venda> GetAll();
-    Venda? GetById(int id);
-    Venda  Add(Venda venda);
+    IEnumerable<VendaResponseDto> GetAll();
+    VendaResponseDto? GetById(int id);
+    VendaResponseDto Add(VendaCreateDto venda);
 }
