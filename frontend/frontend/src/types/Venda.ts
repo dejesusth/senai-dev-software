@@ -1,8 +1,8 @@
 export interface Venda {
   id: number
-  dataVenda: Date
+  dataVenda?: Date
   quantidade: number
-  valorTotal: number
+  valorTotal?: number
   clienteId: number
   produtoId: number
 }

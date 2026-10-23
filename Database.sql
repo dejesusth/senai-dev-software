@@ -48,6 +48,14 @@ CREATE TABLE IF NOT EXISTS funcionarios(
     FOREIGN KEY (departamento_id) REFERENCES departamentos(id)
 );
 
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha_hash VARCHAR(255) NOT NULL,
+    ativo TINYINT(1)   NOT NULL DEFAULT 1
+);
+
 INSERT INTO produtos (nome, preco, estoque, ativo) 
 VALUES 
 ('Notebook', 3500.00, 10, 1),
@@ -56,3 +64,5 @@ VALUES
 INSERT INTO clientes (nome, email, cpf, ativo)
 VALUES
 ('Thiago', 'thiago@email.com', '123.456.789-00', 1);
+
+select * from vendas;
