@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Venda } from '../types/Venda.ts'
-import { VendaService } from '../services/VendaService.ts'
+import { VendaService } from '../services/vendaService.ts'
 import VendaForm from '../components/VendaForm.tsx'
 import VendaList from '../components/VendaList.tsx'
 

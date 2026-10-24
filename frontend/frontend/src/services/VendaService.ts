@@ -1,4 +1,4 @@
-import api from './api'
+import api from './api.ts'
 import type { Venda, NovaVenda } from '../types/Venda.ts'
 
 export const VendaService = {

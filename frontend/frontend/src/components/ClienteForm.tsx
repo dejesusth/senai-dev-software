@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { clienteService } from '../services/ClienteService'
+import { clienteService } from '../services/clienteService'
 import './cliente.css'
 
 interface Props {

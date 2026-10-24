@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Cliente } from '../types/Cliente'
-import { clienteService } from '../services/ClienteService.ts'
+import { clienteService } from '../services/clienteService.ts'
 import ClienteForm from '../components/ClienteForm'
 import ClienteList from '../components/ClienteList'
 
