@@ -54,6 +54,10 @@ builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 
 builder.Services.AddScoped<IFuncionarioService, FuncionarioService>();
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
