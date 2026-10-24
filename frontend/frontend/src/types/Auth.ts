@@ -8,3 +8,4 @@ export interface LoginResponse {
   nome: string
   email: string
 }
+export type AuthUser = LoginResponse

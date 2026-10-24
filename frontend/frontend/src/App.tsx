@@ -1,26 +1,39 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from './context/AuthContext'
 import Sidebar from './components/Sidebar'
+import ProtectedRoute from './components/ProtectedRoute'
+import LoginPage from './pages/LoginPage'
 import ProdutosPage from './pages/ProdutosPage'
 import ClientesPage from './pages/ClientesPage'
-import VendasPage from './pages/VendasPage'
-import './index.css'
+
+function Layout() {
+  const { isAuthenticated } = useAuth()
+  return (
+    <div style={{ display: 'flex' }}>
+      {isAuthenticated && <Sidebar />}
+      <main style={{ flex: 1, padding: '24px' }}>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<Navigate to="/produtos" replace />} />
+          <Route path="/produtos" element={
+            <ProtectedRoute><ProdutosPage /></ProtectedRoute>
+          } />
+          <Route path="/clientes" element={
+            <ProtectedRoute><ClientesPage /></ProtectedRoute>
+          } />
+        </Routes>
+      </main>
+    </div>
+  )
+}
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Sidebar />
-        <main className="content">
-          <Routes>
-            <Route path="/" element={<Navigate to="/produtos" replace />} />
-            <Route path="/produtos" element={<ProdutosPage />} />
-            <Route path="/clientes" element={<ClientesPage />} />
-            <Route path="/vendas" element={<VendasPage />} />
-          </Routes>
-        </main>
-      </div>
+      <AuthProvider>
+        <Layout />
+      </AuthProvider>
     </BrowserRouter>
   )
 }
-
 export default App

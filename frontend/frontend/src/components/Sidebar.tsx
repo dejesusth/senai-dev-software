@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
+import { useAuth} from '../context/AuthContext'
 import './sidebar.css'
 
 export default function Sidebar() {
+  const { user, logout } = useAuth()
+
   return (
     <aside className="sidebar">
       <h1><div className="sidebar-brand">
@@ -40,6 +43,12 @@ export default function Sidebar() {
           💵 Vendas
         </NavLink>
       </nav>
+      
+<div style={{ padding: '20px', color: 'white', fontSize: '13px' }}>
+  <p>👤 {user?.nome}</p>
+  <button onClick={logout}>🚪 Sair</button>
+</div>
+
     </aside>
   )
 }
