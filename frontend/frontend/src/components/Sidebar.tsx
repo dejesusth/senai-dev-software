@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { useAuth} from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext'
 import './sidebar.css'
 
 export default function Sidebar() {
@@ -7,21 +7,20 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-      <h1><div className="sidebar-brand">
-  <div className="brand-logo-group">
-    {/* Caixa branca com a sua imagem JPG */}
-    <div className="brand-icon-container">
-<img src="/logo.jpg" alt="StockFlow Logo" className="brand-icon-image" />    </div>
+      <div className="sidebar-brand">
+        <div className="brand-logo-group">
+          <div className="brand-icon-container">
+            <img src="/logo.jpg" alt="StockFlow Logo" className="brand-icon-image" />
+          </div>
 
-    {/* Nome divido para podermos dar cores diferentes */}
-    <h1 className="brand-title">
-      <span className="brand-stock">Stock</span>
-      <span className="brand-flow">Flow</span>
-    </h1>
-  </div>
+          <h1 className="brand-title">
+            <span className="brand-stock">Stock</span>
+            <span className="brand-flow">Flow</span>
+          </h1>
+        </div>
+      </div>
 
-</div></h1>
-      <nav>
+      <nav className="sidebar-nav">
         <NavLink 
           to="/produtos" 
           className={({ isActive }) => (isActive ? 'active' : '')}
@@ -44,11 +43,12 @@ export default function Sidebar() {
         </NavLink>
       </nav>
       
-<div style={{ padding: '20px', color: 'white', fontSize: '13px' }}>
-  <p>👤 {user?.nome}</p>
-  <button onClick={logout}>🚪 Sair</button>
-</div>
-
+      <div className="sidebar-footer">
+        <p className="user-info">  {user?.nome || 'Usuário'}</p>
+        <button onClick={logout} className="logout-button">
+            Sair
+        </button>
+      </div>
     </aside>
   )
 }
