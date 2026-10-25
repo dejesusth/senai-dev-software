@@ -2,21 +2,21 @@
    1. PAINEL DE CORES E VARIÁVEIS
    ========================================================= */
 :root {
-  --cor-primaria: #2563eb;
-  --cor-primaria-hover: #1d4ed8;
+  --cor-primaria: #d97706;
+  --cor-primaria-hover: #b45309;
   --cor-sucesso: #10b981;
   --cor-sucesso-bg: rgba(16, 185, 129, 0.1);
-  --cor-alerta: #f59e0b;
-  --cor-alerta-bg: rgba(245, 158, 11, 0.1);
+  --cor-alerta: #d97706;
+  --cor-alerta-bg: rgba(217, 119, 6, 0.1);
   --cor-erro: #ef4444;
   --cor-erro-bg: rgba(239, 68, 68, 0.1);
 
-  --fundo-pagina: #f8fafc;
+  --fundo-pagina: #f4f4f5;
   --fundo-cartao: #ffffff;
-  --texto-titulo: #0f172a;
-  --texto-corpo: #475569;
-  --texto-mutado: #94a3b8;
-  --borda-cor: #e2e8f0;
+  --texto-titulo: #18181b;
+  --texto-corpo: #52525b;
+  --texto-mutado: #71717a;
+  --borda-cor: #d4d4d8;
 
   --raio-borda: 12px;
   --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
@@ -24,21 +24,7 @@
 }
 
 /* =========================================================
-   2. TEMA ESCURO
-   ========================================================= */
-body.dark-mode {
-  --fundo-pagina: #0f172a;
-  --fundo-cartao: #1e293b;
-  --texto-titulo: #f8fafc;
-  --texto-corpo: #cbd5e1;
-  --texto-mutado: #64748b;
-  --borda-cor: #334155;
-  --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --sombra-hover: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* =========================================================
-   3. APLICAÇÃO DOS ESTILOS
+   2. APLICAÇÃO DOS ESTILOS
    ========================================================= */
 body {
   background-color: var(--fundo-pagina);

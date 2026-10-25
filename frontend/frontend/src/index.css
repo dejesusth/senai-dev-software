@@ -11,7 +11,6 @@ html, body, #root {
   box-sizing: border-box !important;
 }
 
-#root {
 /* Anula as restrições de largura e espaçamento padrão do Vite */
 #root {
   max-width: 100% !important;
@@ -19,7 +18,7 @@ html, body, #root {
   margin: 0 !important;
   padding: 0 !important;
 }
-}
+
 
 * {
   box-sizing: border-box;
@@ -28,8 +27,8 @@ html, body, #root {
 }
 
 body {
-  background-color: #039BE5;
-  color: #1e293b;
+  background-color: #fafafa;
+  color: #18181b;
 }
 
 /* Estrutura do Layout */
@@ -40,7 +39,7 @@ body {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  background-color: #039BE5;
+  background-color: #fafafa;
 }
 
 .sidebar {
@@ -49,7 +48,7 @@ body {
   position: sticky;
   top: 0;
   flex-shrink: 0;
-  background-color: #2D323E;
+  background-color: #18181b;
   color: #fff;
   padding: 28px 20px;
 }
@@ -67,7 +66,7 @@ body {
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  color: #94a3b8;
+  color: #a1a1aa;
   text-decoration: none;
   border-radius: 6px;
   margin-bottom: 4px;
@@ -75,10 +74,13 @@ body {
   transition: all 0.2s;
 }
 
-.sidebar nav a:hover,
+.sidebar nav a:hover {
+  background-color: #27272a;
+  color: #ffffff;
+}
 .sidebar nav a.active {
-  background-color: #1e293b;
-  color: #38bdf8;
+  background-color: #d97706;
+  color: #ffffff;
 }
 
 .content {
@@ -90,14 +92,14 @@ body {
 .page-title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #18181b;
   margin-bottom: 24px;
 }
 
 /* Card Containers */
 .card {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e4e4e7;
   border-radius: 10px;
   padding: 24px;
   margin-bottom: 24px;
@@ -108,7 +110,7 @@ body {
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 16px;
-  color: #1e293b;
+  color: #18181b;
 }
 
 /* Formulários e Inputs */
@@ -128,13 +130,13 @@ body {
 label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #475569;
+  color: #52525b;
 }
 
 input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #d4d4d8;
   border-radius: 6px;
   font-size: 0.95rem;
   outline: none;
@@ -142,15 +144,15 @@ input {
 }
 
 input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
 }
 
 /* Botões */
 .btn-primary {
   width: 100%;
   padding: 12px;
-  background-color: #3793FE;
+  background-color: #d97706;
   color: white;
   border: none;
   border-radius: 6px;
@@ -161,11 +163,11 @@ input:focus {
 }
 
 .btn-primary:hover {
-  background-color: #1d4ed8;
+  background-color: #b45309;
 }
 
 .btn-primary:disabled {
-  background-color: #94a3b8;
+  background-color: #a1a1aa;
   cursor: not-allowed;
 }
 
@@ -182,18 +184,18 @@ input:focus {
   align-items: center;
   padding: 14px 18px;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #e4e4e7;
   border-radius: 8px;
 }
 
 .list-item-title {
   font-weight: 600;
-  color: #1e293b;
+  color: #18181b;
 }
 
 .list-item-subtitle {
   font-size: 0.875rem;
-  color: #64748b;
+  color: #71717a;
 }
 
 .badge-price {
@@ -250,12 +252,12 @@ input:focus {
 }
 
 .brand-flow {
-  color: #38bdf8;
+  color: #d97706;
 }
 
 /* Ícone da seta no lado direito */
 .collapse-icon {
-  color: #94a3b8;
+  color: #a1a1aa;
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.2s;

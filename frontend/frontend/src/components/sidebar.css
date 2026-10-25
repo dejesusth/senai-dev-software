@@ -2,7 +2,7 @@
 .sidebar {
   width: 240px;
   height: 100vh;
-  background-color: #1e293b;
+  background-color: #18181b;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@
 }
 
 .brand-flow {
-  color: #3b82f6;
+  color: #d97706;
 }
 
 /* Links de Navegação */
@@ -70,7 +70,7 @@
   align-items: center;
   gap: 10px;
   padding: 10px 14px;
-  color: #94a3b8;
+  color: #a1a1aa;
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
@@ -79,12 +79,12 @@
 }
 
 .sidebar-nav a:hover {
-  background-color: #334155;
+  background-color: #27272a;
   color: #ffffff;
 }
 
 .sidebar-nav a.active {
-  background-color: #2563eb;
+  background-color: #d97706;
   color: #ffffff;
   font-weight: 600;
 }
@@ -92,7 +92,7 @@
 /* Rodapé com Usuário e Logout */
 .sidebar-footer {
   padding-top: 16px;
-  border-top: 1px solid #334155;
+  border-top: 1px solid #27272a;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -101,7 +101,7 @@
 .user-info {
   margin: 0;
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #a1a1aa;
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;

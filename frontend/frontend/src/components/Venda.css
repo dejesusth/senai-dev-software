@@ -1,7 +1,3 @@
-/* =========================================================
-   ESTILOS - GESTÃO DE CLIENTES (PADRÃO PRODUTOS)
-   ========================================================= */
-
 /* Garantir box-sizing correto em todos os elementos */
 .venda-card-box *, 
 .venda-card-box *::before, 
@@ -11,11 +7,11 @@
 
 /* Cartão do Formulário e Cartão da Lista */
 .venda-card-box {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  background-color: var(--fundo-cartao);
+  border: 1px solid var(--borda-cor);
+  border-radius: var(--raio-borda);
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--sombra-card);
   margin-bottom: 24px; /* Espaçamento entre os dois cartões */
   width: 100%;
 }
@@ -24,10 +20,10 @@
 .secao-titulo-venda {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--texto-titulo);
   margin: 0 0 16px 0;
   padding-bottom: 12px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--borda-cor);
 }
 
 /* Estrutura do Formulário */
@@ -48,22 +44,22 @@
 .form-group label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #334155;
+  color: var(--texto-corpo);
 }
 
 .form-input {
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--borda-cor);
   border-radius: 8px;
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: #ffffff;
+  background-color: var(--fundo-cartao);
 }
 
 .form-input:focus {
-  border-color: #2563eb;
+  border-color: var(--cor-primaria);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
@@ -71,7 +67,7 @@
 .btn-cadastrar-venda {
   width: 100% !important;
   display: block;
-  background-color: #2563eb;
+  background-color: var(--cor-primaria);
   color: #ffffff;
   padding: 12px 20px;
   border: none;
@@ -85,11 +81,11 @@
 }
 
 .btn-cadastrar-venda:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background-color: var(--cor-primaria-hover);
 }
 
 .btn-cadastrar-venda:disabled {
-  background-color: #94a3b8;
+  background-color: #a1a1aa;
   cursor: not-allowed;
 }
 
@@ -108,21 +104,21 @@
   justify-content: space-between;
   align-items: center;
   padding: 14px 18px;
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  background-color: var (--fundo-cartao);
+  border: 1px solid var(--borda-cor);
   border-radius: 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .venda-item:hover {
   transform: translateY(-2px);
-  border-color: #2563eb;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: var(--cor-primaria);
+  box-shadow: var(--sombra-hover);
 }
 
 .venda-data_venda {
   font-weight: 600;
-  color: #1e293b;
+  color: var(--texto-titulo);
   font-size: 0.95rem;
 }
 
@@ -134,17 +130,17 @@
 }
 
 .venda-quantidade {
-  color: #64748b;
+  color: var(--texto-corpo);
 }
 
 .venda-divisor {
-  color: #cbd5e1;
+  color: var(--borda-cor);
 }
 
 .venda-valor_total {
   font-weight: 600;
-  color: #2563eb;
-  background-color: #eff6ff;
+  color: var(--cor-primaria);
+  background-color: var(--cor-alerta-bg);
   padding: 4px 10px;
   border-radius: 9999px;
   font-size: 0.8rem;
@@ -152,6 +148,6 @@
 
 .venda-vazio {
   text-align: center;
-  color: #94a3b8;
+  color: var(--texto-mutado);
   padding: 20px 0;
 }

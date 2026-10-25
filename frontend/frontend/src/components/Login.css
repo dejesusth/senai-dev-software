@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #09090b 0%, #18181b 100%);
   padding: 20px;
   box-sizing: border-box;
   z-index: 1000;
@@ -44,14 +44,14 @@
 
 .login-header h2 {
   margin: 0;
-  color: #0f172a;
+  color: #18181b;
   font-size: 1.5rem;
   font-weight: 700;
 }
 
 .login-header p {
   margin: 6px 0 0;
-  color: #64748b;
+  color: #71717a;
   font-size: 0.875rem;
 }
 
@@ -71,13 +71,13 @@
 .form-group label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #334155;
+  color: #52525b;
 }
 
 .form-group input {
   width: 100%;
   padding: 12px 14px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #d4d4d8;
   border-radius: 8px;
   font-size: 0.95rem;
   outline: none;
@@ -85,15 +85,15 @@
 }
 
 .form-group input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: #d97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
 }
 
 /* Botão de Entrar */
 .login-button {
   width: 100%;
   padding: 12px;
-  background-color: #2563eb;
+  background-color: #d97706;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
@@ -105,7 +105,7 @@
 }
 
 .login-button:hover {
-  background-color: #1d4ed8;
+  background-color: #b45309;
 }
 
 .login-button:active {
@@ -127,7 +127,7 @@
 
 /* Estado de carregamento do botão */
 .login-button:disabled {
-  background-color: #94a3b8;
+  background-color: #a1a1aa;
   cursor: not-allowed;
   transform: none;
 }
