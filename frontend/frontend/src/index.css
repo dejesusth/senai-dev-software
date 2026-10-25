@@ -273,3 +273,56 @@ input:focus {
   margin: 0;
   padding: 0;
 }
+
+/* SISTEMA DE NOTIFICAÇÕES */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: var(--raio-borda, 8px);
+  background-color: var(--fundo-cartao, #ffffff);
+  color: var(--texto-titulo, #18181b);
+  box-shadow: var(--sombra-hover, 0 4px 12px rgba(0, 0, 0, 0.1));
+  border-left: 5px solid var(--cor-primaria, #d97706);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: toastEntrar 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-sucesso {
+  border-left-color: var(--cor-sucesso, #16a34a);
+}
+
+.toast-erro {
+  border-left-color: var(--cor-erro, #dc2626);
+}
+
+.toast-alerta {
+  border-left-color: var(--cor-alerta, #d97706);
+}
+
+@keyframes toastEntrar {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage'
 import ProdutosPage from './pages/ProdutosPage'
 import ClientesPage from './pages/ClientesPage'
 import VendasPage from './pages/VendasPage'
+import {ToastContainer} from './components/ToastContainer'
 
 function Layout() {
   const { isAuthenticated } = useAuth()
@@ -27,6 +28,7 @@ function Layout() {
           } />
         </Routes>
       </main>
+      <ToastContainer />
     </div>
   )
 }

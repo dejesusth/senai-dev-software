@@ -3,6 +3,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { authService } from '../services/authService'
 import '../components/Login.css'
+import { mostrarToast } from '../services/toastService'
 
 function LoginPage() {
   const [email, setEmail]     = useState('')
@@ -22,9 +23,12 @@ function LoginPage() {
       setLoading(true)
       const resp = await authService.login({ email, senha })
       login(resp)
+      mostrarToast('Login realizado com sucesso!', 'sucesso')
       navigate('/produtos')
     } catch {
-      setErro('E-mail ou senha incorretos.')
+      const mensagemErro = 'E-mail ou senha incorretos.'
+      setErro(mensagemErro)
+      mostrarToast(mensagemErro, 'erro')
     } finally {
       setLoading(false)
     }
@@ -47,7 +51,7 @@ function LoginPage() {
             <input
               id="email"
               type="email"
-              placeholder="seu.email@exemplo.com"
+              placeholder="email@exemplo.com"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
