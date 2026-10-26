@@ -4,6 +4,7 @@ import './produto.css';
 interface Props {
   produtos: Produto[];
   loading: boolean;
+  onExcluir?: (produto: Produto) => void 
 }
 
 function ProdutoList({ produtos, loading }: Props) {

@@ -13,5 +13,8 @@ export const produtoService = {
   criar: async (body: Omit<Produto, 'id'>): Promise<Produto> => {
     const { data } = await api.post('/produto', body)
     return data
+  },
+  deletar: async (id: number): Promise<void> => {
+    await api.delete(`/produto/${id}`)
   }
 }
