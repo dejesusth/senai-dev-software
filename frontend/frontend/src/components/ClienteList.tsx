@@ -4,9 +4,10 @@ import './cliente.css';
 interface Props {
   clientes: Cliente[];
   loading: boolean;
+  onExcluir?: (cliente: Cliente) => void
 }
 
-function ClienteList({ clientes, loading }: Props) {
+function ClienteList({ clientes, loading, onExcluir }: Props) {
   const listaClientes = Array.isArray(clientes) ? clientes : [];
 
   return (
@@ -14,7 +15,7 @@ function ClienteList({ clientes, loading }: Props) {
       <h2 className="secao-titulo-cliente">Clientes Cadastrados</h2>
 
       {loading ? (
-        <p className="cliente-vazio">A carregar...</p>
+        <p className="cliente-vazio">Carregando clientes...</p>
       ) : listaClientes.length === 0 ? (
         <p className="cliente-vazio">Nenhum cliente cadastrado ainda.</p>
       ) : (
@@ -27,6 +28,17 @@ function ClienteList({ clientes, loading }: Props) {
                 <span className="cliente-divisor">•</span>
                 <span className="cliente-cpf">{c.cpf}</span>
               </div>
+
+              {/* Botão para chamar a exclusão / abrir o modal */}
+              {onExcluir && (
+                <button
+                type="button"
+                className="btn-excluir"
+                onClick={() => onExcluir(c)}
+                >
+                  Excluir
+                  </button>
+              )}
             </li>
           ))}
         </ul>
@@ -34,5 +46,4 @@ function ClienteList({ clientes, loading }: Props) {
     </div>
   );
 }
-
 export default ClienteList;

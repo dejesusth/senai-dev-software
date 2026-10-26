@@ -30,7 +30,7 @@ const [produtoParaExcluir, setProdutoParaExcluir] = useState<Produto | null>(nul
 
   const handleProdutoCriado = () => {
     carregarProdutos()
-    mostrarToast('Produto salvo com sucesso!', 'sucesso')
+    mostrarToast('Produto cadastrado com sucesso!', 'sucesso')
   }
 
   const handleConfirmarExclusao = async () => {

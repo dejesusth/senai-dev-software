@@ -10,5 +10,9 @@ export const VendaService = {
   criar: async (c: NovaVenda): Promise<Venda> => {
     const { data } = await api.post('/venda', c)
     return data
+  },
+
+  deletar: async (id: number): Promise<void> => {
+    await api.delete(`/venda/${id}`)
   }
 }

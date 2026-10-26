@@ -4,9 +4,10 @@ import './cliente.css';
 interface Props {
   vendas: Venda[];
   loading: boolean;
+  onExcluir?: (venda: Venda) => void
 }
 
-function VendaList({ vendas, loading }: Props) {
+function VendaList({ vendas, loading, onExcluir }: Props) {
   const listaVendas = Array.isArray(vendas) ? vendas : [];
 
   return (
@@ -14,7 +15,7 @@ function VendaList({ vendas, loading }: Props) {
       <h2 className="secao-titulo-venda">Vendas Cadastradas</h2>
 
       {loading ? (
-        <p className="venda-vazio">A carregar...</p>
+        <p className="venda-vazio">Carregando...</p>
       ) : listaVendas.length === 0 ? (
         <p className="venda-vazio">Nenhuma venda cadastrada ainda.</p>
       ) : (
@@ -27,6 +28,17 @@ function VendaList({ vendas, loading }: Props) {
                 <span className="venda-divisor">•</span>
                 <span className="venda-valor"> $ {Number(v?.valorTotal ?? 0).toFixed(2)} </span>
               </div>
+
+              {/* Botão de exclusão para acionar o modal */}
+              {onExcluir && (
+                <button
+                type="button"
+                className="btn-excluir"
+                onClick={() => onExcluir(v)}
+                >
+                  Excluir
+                  </button>
+              )}
             </li>
           ))}
         </ul>
