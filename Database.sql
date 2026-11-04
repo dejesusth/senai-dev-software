@@ -66,6 +66,6 @@ VALUES
 ('Thiago', 'thiago@email.com', '123.456.789-00', 1);
 
 INSERT INTO usuarios (nome, email, senha_hash)
-VALUES ('Admin SENAI', 'admin@senai.com',
-        '$2a$11$dIjjGbl0KpncvNaQd/xZv..EQUxfP3DXMyOITmH4Am7H8EdUuZQAq');
-        select * from usuarios;
+VALUES ('Admin SENAI', 'admin@senai.com', '$2a$11$dIjjGbl0KpncvNaQd/xZv..EQUxfP3DXMyOITmH4Am7H8EdUuZQAq');
+
+CREATE INDEX idx_vendas_data ON vendas (data_venda);
