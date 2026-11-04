@@ -35,28 +35,26 @@ builder.Services.AddCors(options => {
 
 
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
-
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-
 builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddScoped<IVendaRepository, VendaRepository>();
-
 builder.Services.AddScoped<IVendaService, VendaService>();
 
 builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();
-
 builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
 
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
-
 builder.Services.AddScoped<IFuncionarioService, FuncionarioService>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 var app = builder.Build();
 
