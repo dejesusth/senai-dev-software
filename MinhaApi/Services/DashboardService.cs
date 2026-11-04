@@ -7,7 +7,7 @@ public class DashboardService : IDashboardService
     {
         if (dias < 1 || dias > 90)
             throw new ArgumentException("O período deve ser entre 1 e 90 dias.");
-        return DateTime.Today.AddDays(-(dias - 1)); // inclui hoje
+        return DateTime.Today.AddDays(-(dias - 1));
     }
 
     private static void ValidarLimite(int limite)
