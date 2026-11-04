@@ -5,7 +5,7 @@ public class DashboardRepository : IDashboardRepository
 {
     private readonly string _cs;
     public DashboardRepository(IConfiguration config)
-        => _cs = config.GetConnectionString("Default")!;
+        => _cs = config.GetConnectionString("DefaultConnection")!;
 
     public DashboardResumo ObterResumo(DateTime inicio)
     {
