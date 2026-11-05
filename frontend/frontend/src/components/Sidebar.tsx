@@ -22,6 +22,13 @@ export default function Sidebar() {
 
       <nav className="sidebar-nav">
         <NavLink 
+          to="/dashboard" 
+          className={({ isActive }) => (isActive ? 'active' : '')}
+        >
+          📊 Dashboard
+        </NavLink>
+
+        <NavLink 
           to="/produtos" 
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
