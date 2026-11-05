@@ -14,7 +14,7 @@ function LoginPage() {
   const navigate = useNavigate()
 
   // Redireciona se já estiver autenticado
-  if (isAuthenticated) return <Navigate to="/produtos" replace />
+if (isAuthenticated) return <Navigate to="/dashboard" replace />
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
