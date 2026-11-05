@@ -7,6 +7,7 @@ import ProdutosPage from './pages/ProdutosPage'
 import ClientesPage from './pages/ClientesPage'
 import VendasPage from './pages/VendasPage'
 import {ToastContainer} from './components/ToastContainer'
+import DashboardPage from './pages/DashboardPage'
 
 function Layout() {
   const { isAuthenticated } = useAuth()
@@ -16,6 +17,10 @@ function Layout() {
       <main style={{ flex: 1, padding: '24px' }}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute><DashboardPage /></ProtectedRoute>
+          } />
           <Route path="/" element={<Navigate to="/produtos" replace />} />
           <Route path="/produtos" element={
             <ProtectedRoute><ProdutosPage /></ProtectedRoute>
