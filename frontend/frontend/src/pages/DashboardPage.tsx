@@ -36,7 +36,7 @@ function DashboardPage() {
         setUltimas(u)
         setEstoque(e)
       } catch {
-        setErro('Erro ao carregar o dashboard.')
+        setErro('Erro ao carregar os dados do dashboard.')
       } finally {
         setLoading(false)
       }
@@ -45,13 +45,12 @@ function DashboardPage() {
   }, [dias])
 
   return (
-    <div className={`dashboard-container ${loading ? 'is-loading' : ''}`}>
-      {/* Cabeçalho */}
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">📊 Dashboard</h1>
+    <div className={`page-container ${loading ? 'is-loading' : ''}`}>
+      {/* Cabeçalho Limpo */}
+      <div className="page-header">
+        <h1 className="page-title">Dashboard</h1>
         
         <div className="dashboard-filter-box">
-          <span className="filter-icon">📅</span>
           <select 
             value={dias} 
             onChange={(e) => setDias(Number(e.target.value))}
@@ -67,31 +66,29 @@ function DashboardPage() {
       {erro && <div className="dashboard-error">{erro}</div>}
       {!resumo && loading && <p className="dashboard-loading-text">A carregar dados do dashboard...</p>}
 
+      {/* Cards de KPI Limpos */}
       {resumo && (
         <div className="kpi-grid">
           <CardResumo 
-            icone="💰" 
             titulo="Faturamento" 
             valor={formatarMoeda(resumo.faturamento)} 
           />
           <CardResumo 
-            icone="🛒" 
             titulo="Vendas" 
             valor={String(resumo.totalVendas)} 
           />
           <CardResumo 
-            icone="🎯" 
             titulo="Ticket Médio" 
             valor={formatarMoeda(resumo.ticketMedio)} 
           />
           <CardResumo 
-            icone="👤" 
             titulo="Clientes Ativos" 
             valor={String(resumo.totalClientes)} 
           />
         </div>
       )}
 
+      {/* Gráficos e Tabelas */}
       <div className="dashboard-grid-row">
         <GraficoVendas dados={vendasDia} />
         <TopProdutos dados={top} />

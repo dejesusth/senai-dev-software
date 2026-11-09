@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Venda } from '../types/Venda.ts'
-import { VendaService } from '../services/vendaService.ts'
+import { VendaService } from '../services/VendaService.ts'
 import VendaForm from '../components/VendaForm.tsx'
 import VendaList from '../components/VendaList.tsx'
 import { mostrarToast } from '../services/toastService.ts'
@@ -9,32 +9,33 @@ import { ConfirmModal } from '../components/ConfirmModal.tsx'
 function VendasPage() {
   const [vendas, setVendas] = useState<Venda[]>([])
   const [loading, setLoading] = useState(false)
-
   const [vendaParaExcluir, setVendaParaExcluir] = useState<Venda | null>(null)
 
-const carregarVendas = async () => {
-  setLoading(true)
-  try {
-    const dados = await VendaService.listar()
-    
-    // Se a API/Service retornar um objeto { data: [...] } ou undefined/null
-    if (Array.isArray(dados)) {
-      setVendas(dados)
-    } else if (dados && Array.isArray((dados as any).data)) {
-      setVendas((dados as any).data)
-    } else {
-      setVendas([]) // Fallback para lista vazia
+  const carregarVendas = async () => {
+    setLoading(true)
+    try {
+      const dados = await VendaService.listar()
+      
+      // Se a API/Service retornar um objeto { data: [...] } ou undefined/null
+      if (Array.isArray(dados)) {
+        setVendas(dados)
+      } else if (dados && Array.isArray((dados as any).data)) {
+        setVendas((dados as any).data)
+      } else {
+        setVendas([]) // Fallback para lista vazia
+      }
+    } catch (error) {
+      console.error("Erro ao carregar vendas:", error)
+      mostrarToast('Erro ao carregar vendas.', 'erro')
+      setVendas([])
+    } finally {
+      setLoading(false)
     }
-  } catch (error) {
-    console.error("Erro ao carregar vendas:", error)
-    mostrarToast('Erro ao carregar vendas.', 'erro')
-    setVendas([])
-  } finally {
-    setLoading(false)
   }
-}
 
-  useEffect(() => { carregarVendas() }, [])
+  useEffect(() => { 
+    carregarVendas() 
+  }, [])
 
   // Função chamada após registrar/atualizar uma venda
   const handleVendaCriada = () => {
@@ -60,27 +61,35 @@ const carregarVendas = async () => {
   }
 
   return (
-  <div>
-    <h1>Gestão de Vendas</h1>
-    <VendaForm onVendaCriada={handleVendaCriada} />
-    
-    <VendaList
-    vendas={vendas}
-    loading={loading} 
-    onExcluir={(venda) => setVendaParaExcluir(venda)}
-    />
+    <div className="page-container">
+      {/* Cabeçalho da Página Padronizado */}
+      <div className="page-header">
+        <h1 className="page-title">Gestão de Vendas</h1>
+      </div>
 
-    {/* Modal de Confirmação de Exclusão */}
-    <ConfirmModal
-    isOpen={vendaParaExcluir !== null}
-    title="Excluir Venda"
-    message={`Tem certeza que deseja excluir o registro da venda #${vendaParaExcluir?.id || ''}? Esta ação não poderá ser desfeita. `}
-    confirmText="Sim, Excluir"
-    cancelText="Cancelar"
-    variant="danger"
-    onConfirm={handleConfirmarExclusao}
-    onClose={() => setVendaParaExcluir(null)}
-    />
-  </div>)
+      {/* Formulário de Cadastro */}
+      <VendaForm onVendaCriada={handleVendaCriada} />
+      
+      {/* Listagem Grelhada e Alinhada */}
+      <VendaList
+        vendas={vendas}
+        loading={loading} 
+        onExcluir={(venda) => setVendaParaExcluir(venda)}
+      />
+
+      {/* Modal de Confirmação de Exclusão */}
+      <ConfirmModal
+        isOpen={vendaParaExcluir !== null}
+        title="Excluir Venda"
+        message={`Tem certeza que deseja excluir o registro da venda #${vendaParaExcluir?.id || ''}? Esta ação não poderá ser desfeita.`}
+        confirmText="Sim, Excluir"
+        cancelText="Cancelar"
+        variant="danger"
+        onConfirm={handleConfirmarExclusao}
+        onClose={() => setVendaParaExcluir(null)}
+      />
+    </div>
+  )
 }
+
 export default VendasPage

@@ -12,7 +12,7 @@ function GraficoVendas({ dados }: Props) {
 
   return (
     <div className="dashboard-card" style={painel}>
-      <h3 className="dashboard-card-title">📈 Faturamento por Dia</h3>
+      <h3 className="dashboard-card-title">Faturamento por Dia</h3>
       
       {listaDados.length === 0 ? (
         <p className="dashboard-empty">Sem dados de vendas no período selecionado.</p>

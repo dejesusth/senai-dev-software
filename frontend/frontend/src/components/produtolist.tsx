@@ -4,36 +4,55 @@ import './produto.css';
 interface Props {
   produtos: Produto[];
   loading: boolean;
-  onExcluir?: (produto: Produto) => void 
+  onExcluir?: (produto: Produto) => void;
 }
 
-function ProdutoList({ produtos, loading }: Props) {
+function ProdutoList({ produtos, loading, onExcluir }: Props) {
   const listaProdutos = Array.isArray(produtos) ? produtos : [];
 
   return (
-    <div className="produto-container">
-      <h2 className="secao-titulo">Produtos Cadastrados</h2>
+    <div className="card-box">
+      <h2 className="card-title">Produtos Cadastrados</h2>
 
       {loading ? (
-        <p className="produto-vazio">Carregando...</p>
+        <p className="text-muted">A carregar produtos...</p>
       ) : listaProdutos.length === 0 ? (
-        <p className="produto-vazio">Nenhum produto cadastrado ainda.</p>
+        <p className="text-muted">Nenhum produto cadastrado ainda.</p>
       ) : (
-        <ul className="produto-lista">
-          {listaProdutos.map((p) => (
-            <li key={p.id} className="produto-item">
-              <span className="produto-nome">{p.nome}</span>
-              <div className="produto-info">
-              <span className={`produto-estoque ${p.estoque === 0 ? 'zerado' : p.estoque < 5 ? 'baixo' : ''}`}>
-              {p.estoque === 0 ? 'Sem estoque' : `Estoque: ${p.estoque}`}
-              </span>
-                <span className="produto-preco">
-                {Number(p.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+        <div className="list-container">
+          {listaProdutos.map((p) => {
+            const semEstoque = p.estoque === 0;
+            const estoqueBaixo = p.estoque < 5 && !semEstoque;
+
+            return (
+              <div key={p.id} className="item-row">
+                <span className="font-medium text-gray-900">{p.nome}</span>
+
+                <div>
+                  <span className={`produto-estoque ${semEstoque ? 'zerado' : estoqueBaixo ? 'baixo' : ''}`}>
+                    {semEstoque ? 'Sem estoque' : `Estoque: ${p.estoque}`}
+                  </span>
+                </div>
+
+                <span className="font-semibold highlight-amber text-right">
+                  {Number(p.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </span>
+
+                <div className="item-actions">
+                  {onExcluir && (
+                    <button 
+                      type="button" 
+                      className="btn-excluir" 
+                      onClick={() => onExcluir(p)}
+                    >
+                      Excluir
+                    </button>
+                  )}
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            );
+          })}
+        </div>
       )}
     </div>
   );

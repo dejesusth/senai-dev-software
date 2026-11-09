@@ -10,11 +10,10 @@ function EstoqueBaixo({ dados }: EstoqueBaixoProps) {
 
   return (
     <div className="dashboard-card" style={painel}>
-      <h3 className="dashboard-card-title">⚠️ Estoque Baixo</h3>
+      <h3 className="dashboard-card-title">Controle de Estoque</h3>
 
       {lista.length === 0 ? (
         <div className="estoque-ok-box">
-          <span className="estoque-ok-icon">✅</span>
           <p className="estoque-ok-texto">Todos os produtos com estoque suficiente.</p>
         </div>
       ) : (

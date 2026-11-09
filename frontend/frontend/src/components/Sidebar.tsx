@@ -25,28 +25,28 @@ export default function Sidebar() {
           to="/dashboard" 
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
-          📊 Dashboard
+          Dashboard
         </NavLink>
 
         <NavLink 
           to="/produtos" 
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
-          📦 Produtos
+          Produtos
         </NavLink>
 
         <NavLink 
           to="/clientes" 
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
-          👤 Clientes
+          Clientes
         </NavLink>
 
         <NavLink 
           to="/vendas" 
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
-          💵 Vendas
+          Vendas
         </NavLink>
       </nav>
       

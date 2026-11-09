@@ -11,7 +11,7 @@ function UltimasVendas({ dados }: UltimasVendasProps) {
 
   return (
     <div className="dashboard-card" style={painel}>
-      <h3 className="dashboard-card-title">🧾 Últimas Vendas</h3>
+      <h3 className="dashboard-card-title">Últimas Vendas</h3>
 
       {lista.length === 0 ? (
         <p className="dashboard-empty">Nenhuma venda registrada recentemente.</p>
