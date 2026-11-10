@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { produtoService } from '../services/produtoservice.ts'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { produtoService } from '../services/produtoservice'
+import FotoUpload from '../components/Produtos/FotoUpload'
 import './produto.css'
 
 interface Props {
@@ -7,28 +9,67 @@ interface Props {
 }
 
 function ProdutoForm({ onProdutoCriado }: Props) {
+  const { id } = useParams()
+  const modoEdicao = !!id
+
   const [nome, setNome] = useState('')
   const [preco, setPreco] = useState('')
   const [estoque, setEstoque] = useState<number | string>(0)
   const [loading, setLoading] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
+  
+  // ✨ Novo estado para a imagem em Base64
+  const [fotoBase64Atual, setFotoBase64Atual] = useState<string | null>(null)
+
+  // ✨ Carregar produto se estiver em modo de edição
+  useEffect(() => {
+    if (modoEdicao) {
+      carregarProduto()
+    }
+  }, [id])
+
+  async function carregarProduto() {
+    if (!id) return
+    try {
+      const produto = await produtoService.buscarPorId(Number(id))
+      if (produto) {
+        setNome(produto.nome)
+        setPreco(produto.preco.toString())
+        setEstoque(produto.estoque)
+        // ✨ Guardar a data URL que veio da API
+        setFotoBase64Atual(produto.fotoBase64 ?? null)
+      }
+    } catch {
+      setErro('Erro ao carregar dados do produto.')
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setErro(null)
     try {
       setLoading(true)
-      await produtoService.criar({
+      const dados = {
         nome,
         preco: Number(preco),
         estoque: Number(estoque)
-      })
-      setNome('')
-      setPreco('')
-      setEstoque(0)
+      }
+
+      if (modoEdicao) {
+        await produtoService.atualizar(Number(id), dados)
+      } else {
+        await produtoService.criar(dados)
+      }
+
+      if (!modoEdicao) {
+        setNome('')
+        setPreco('')
+        setEstoque(0)
+      }
+
       onProdutoCriado()
     } catch {
-      setErro('Erro ao cadastrar. Tente novamente.')
+      setErro(modoEdicao ? 'Erro ao atualizar produto.' : 'Erro ao cadastrar. Tente novamente.')
     } finally {
       setLoading(false)
     }
@@ -36,7 +77,9 @@ function ProdutoForm({ onProdutoCriado }: Props) {
 
   return (
     <div className="produto-container">
-      <h2 className="produto-titulo">Cadastrar Produto</h2>
+      <h2 className="produto-titulo">
+        {modoEdicao ? 'Editar Produto' : 'Cadastrar Produto'}
+      </h2>
 
       {erro && (
         <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
@@ -82,7 +125,6 @@ function ProdutoForm({ onProdutoCriado }: Props) {
           />
         </div>
 
-        {/* ----------------- CAMPO DE ESTOQUE AQUI ----------------- */}
         <div className="form-group">
           <label htmlFor="estoque">Estoque (Qtd)</label>
           <input
@@ -100,12 +142,22 @@ function ProdutoForm({ onProdutoCriado }: Props) {
             required
           />
         </div>
-        {/* --------------------------------------------------------- */}
 
         <button type="submit" className="btn-cadastrar" disabled={loading}>
-          {loading ? 'Salvando...' : 'Cadastrar'}
+          {loading ? 'Salvando...' : (modoEdicao ? 'Salvar Dados' : 'Cadastrar')}
         </button>
       </form>
+
+      {/* ✨ Exibe o módulo de foto apenas no Modo Edição */}
+      {modoEdicao && (
+        <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #27272a' }}>
+          <FotoUpload
+            produtoId={Number(id)}
+            fotoBase64Atual={fotoBase64Atual}
+            onAtualizar={carregarProduto}
+          />
+        </div>
+      )}
     </div>
   )
 }
