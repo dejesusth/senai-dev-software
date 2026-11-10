@@ -56,6 +56,8 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 
+builder.Services.AddScoped<IFotoService, FotoService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

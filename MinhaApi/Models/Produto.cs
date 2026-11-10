@@ -1,4 +1,6 @@
 namespace MinhaApi.Models;
+using System.Text.Json.Serialization;
+
 
 public class Produto
 {
@@ -13,4 +15,10 @@ public class Produto
 
     public bool Ativo { get; set; }
         = true;
+
+    [JsonIgnore]
+    public string? Foto    { get; set; }
+
+    // Data URL calculada pelo Service — ENVIADA ao frontend
+    public string? FotoBase64 { get; set; } // ✨ NOVO
 }
