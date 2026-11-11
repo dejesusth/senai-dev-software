@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Produto } from '../types/Produto'
 import { produtoService } from '../services/produtoservice.ts'
-import ProdutoForm from '../components/ProdutoForm.tsx'
+import ProdutoForm from '../components/produtoform.tsx'
 import ProdutoList from '../components/produtolist.tsx'
 import { mostrarToast } from '../services/toastService.ts'
 import { ConfirmModal } from '../components/ConfirmModal'
