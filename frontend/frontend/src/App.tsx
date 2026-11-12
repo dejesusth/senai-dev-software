@@ -6,13 +6,14 @@ import LoginPage from './pages/LoginPage'
 import ProdutosPage from './pages/ProdutosPage'
 import ClientesPage from './pages/ClientesPage'
 import VendasPage from './pages/VendasPage'
-import {ToastContainer} from './components/ToastContainer'
+import { ToastContainer } from './components/ToastContainer'
 import DashboardPage from './pages/DashboardPage'
+import { ThemeProvider } from './context/ThemeContext'
 
 function Layout() {
   const { isAuthenticated } = useAuth()
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-page)', color: 'var(--text-primary)' }}>
       {isAuthenticated && <Sidebar />}
       <main style={{ flex: 1, padding: '24px' }}>
         <Routes>
@@ -21,7 +22,6 @@ function Layout() {
           <Route path="/dashboard" element={
             <ProtectedRoute><DashboardPage /></ProtectedRoute>
           } />
-          <Route path="/" element={<Navigate to="/produtos" replace />} />
           <Route path="/produtos" element={
             <ProtectedRoute><ProdutosPage /></ProtectedRoute>
           } />
@@ -40,11 +40,14 @@ function Layout() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Layout />
-      </AuthProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <Layout />
+        </AuthProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
+
 export default App
