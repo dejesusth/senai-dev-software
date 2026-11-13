@@ -5,28 +5,29 @@ interface Props {
   destaque?: boolean
 }
 
-function CardResumo({ titulo, valor, icone }: Props) {
+function CardResumo({ titulo, valor, icone, destaque }: Props) {
   return (
     <div
       className="kpi-card"
       style={{
-        background: '#ffffff',
-        color: '#111827',
-        borderLeft: '5px solid #d97706',
-        borderTop: '1px solid #e5e7eb',
-        borderRight: '1px solid #e5e7eb',
-        borderBottom: '1px solid #e5e7eb',
+        background: 'var(--bg-surface)',
+        color: 'var(--text-primary)',
+        borderLeft: '5px solid var(--accent-amber)',
+        borderTop: '1px solid var(--border-color)',
+        borderRight: '1px solid var(--border-color)',
+        borderBottom: '1px solid var(--border-color)',
         borderRadius: 10,
         padding: 16,
-        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)'
+        boxShadow: 'var(--shadow-card)',
+        transition: 'background-color 0.2s ease, border-color 0.2s ease'
       }}
     >
       <div 
         style={{ 
           fontSize: 13, 
-          color: '#4b5563', 
-          fontWeight: 600, 
-          display: 'flex', 
+          color: 'var(--text-secondary)', 
+          fontWeight: 600,
+          display: 'flex',
           alignItems: 'center', 
           gap: 6 
         }}
@@ -39,7 +40,7 @@ function CardResumo({ titulo, valor, icone }: Props) {
           fontSize: 26, 
           fontWeight: 800, 
           marginTop: 6, 
-          color: '#111827', 
+          color: destaque ? 'var(--accent-amber)' : 'var(--text-primary)', 
           letterSpacing: '-0.02em' 
         }}
       >
