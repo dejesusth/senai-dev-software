@@ -19,7 +19,7 @@ function ProdutoList({ produtos, loading, onExcluir }: Props) {
       <h2 className="card-title">Produtos Cadastrados</h2>
 
       {loading ? (
-        <p className="text-muted">A carregar produtos...</p>
+        <p className="text-muted">Carregando produtos...</p>
       ) : listaProdutos.length === 0 ? (
         <p className="text-muted">Nenhum produto cadastrado ainda.</p>
       ) : (
@@ -30,17 +30,20 @@ function ProdutoList({ produtos, loading, onExcluir }: Props) {
 
             return (
               <div key={p.id} className="item-row">
-                {/* ✨ Miniatura da Foto do Produto */}
+                {/* Coluna 1: Foto + Nome agrupados lado a lado */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0 }}>
                 <div
                   onClick={() => p.fotoBase64 && setProdutoModal(p)}
+                  title={p.fotoBase64 ? 'Clique para ampliar' : undefined}
                   style={{
                     cursor: p.fotoBase64 ? 'pointer' : 'default',
                     position: 'relative',
                     overflow: 'hidden',
                     borderRadius: '8px',
-                    width: '60px',
-                    height: '60px',
-                    flexShrink: 0
+                    width: '52px',
+                    height: '52px',
+                    flexShrink: 0,
+                    border: '1px solid var(--border-color)'
                   }}
                 >
                   {p.fotoBase64 ? (
@@ -58,17 +61,17 @@ function ProdutoList({ produtos, loading, onExcluir }: Props) {
                       <div
                         style={{
                           position: 'absolute',
-                          top: 4,
-                          right: 4,
-                          background: 'rgba(0,0,0,0.6)',
-                          color: 'white',
-                          borderRadius: '50%',
-                          width: 20,
-                          height: 20,
+                          bottom: 2,
+                          right: 2,
+                          background: 'rgba(0,0,0,0.65)',
+                          color: '#ffffff',
+                          borderRadius: '4px',
+                          width: 18,
+                          height: 18,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: 10
+                          fontSize: 9
                         }}
                       >
                         🔍
@@ -79,25 +82,26 @@ function ProdutoList({ produtos, loading, onExcluir }: Props) {
                       style={{
                         width: '100%',
                         height: '100%',
-                        background: '#27272a',
-                        border: '1px solid #3f3f46',
-                        borderRadius: '8px',
+                        background: 'var(--bg-surface-subtle)',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: '#71717a'
+                        color: 'var(--text-muted)'
                       }}
                     >
-                      <span style={{ fontSize: 18 }}>📷</span>
-                      <span style={{ fontSize: 9, marginTop: 2 }}>sem foto</span>
+                      <span style={{ fontSize: 16 }}>📷</span>
+                      <span style={{ fontSize: 8, marginTop: 1 }}>sem foto</span>
                     </div>
                   )}
                 </div>
 
-                {/* Informações do Produto */}
-                <span className="font-medium text-gray-900">{p.nome}</span>
+                <span className="font-medium text-gray-900" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {p.nome}
+                </span>
+              </div>
 
+              {/* Coluna 2: Estoque */}
                 <div>
                   <span
                     className={`produto-estoque ${
@@ -108,13 +112,17 @@ function ProdutoList({ produtos, loading, onExcluir }: Props) {
                   </span>
                 </div>
 
-                <span className="font-semibold highlight-amber text-right">
+              {/* Coluna 3: Preço */}
+                <span className="font-semibold text-right"
+                 style={{ color: 'var(--text-primary)'}} 
+                >
                   {Number(p.preco).toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
                   })}
                 </span>
 
+              {/* Coluna 4: Ações */}
                 <div className="item-actions">
                   {onExcluir && (
                     <button
@@ -132,7 +140,6 @@ function ProdutoList({ produtos, loading, onExcluir }: Props) {
         </div>
       )}
 
-      {/* ✨ Modal da Foto em Tamanho Real */}
       {produtoModal && (
         <ModalFoto
           produto={produtoModal}

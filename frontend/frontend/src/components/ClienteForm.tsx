@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { clienteService } from '../services/clienteService'
+import { clienteService } from '../services/ClienteService'
 import './cliente.css'
 
 interface Props {
@@ -35,7 +35,7 @@ return (
     <h2 className="secao-titulo-cliente">Cadastrar Cliente</h2>
 
     {erro && (
-      <p style={{ color: '#dc2626', marginBottom: '12px', fontWeight: 500 }}>
+      <p style={{ color: 'var(--alert-red-text)', marginBottom: '12px', fontWeight: 500 }}>
         {erro}
       </p>
     )}
@@ -47,7 +47,7 @@ return (
           id="nome"
           className="form-input"
           type="text"
-          placeholder="Ex: João Silva"
+          placeholder="Ex: Thiago Silva"
           value={nome}
           onChange={e => {
             if (erro) setErro(null)
@@ -64,7 +64,7 @@ return (
           id="email"
           className="form-input"
           type="email"
-          placeholder="Ex: joao@email.com"
+          placeholder="Ex: thiago@email.com"
           value={email}
           onChange={e => {
             if (erro) setErro(null)

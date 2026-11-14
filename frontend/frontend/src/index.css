@@ -839,3 +839,20 @@ input:focus, select:focus, textarea:focus {
   border-color: var(--border-color) !important;
   color: var(--text-primary) !important;
 }
+
+/* Corrige os cards e títulos de formulário de Clientes, Produtos e Vendas */
+[data-theme="dark"] .cliente-card-box,
+[data-theme="dark"] .produto-card-box,
+[data-theme="dark"] .venda-card-box {
+  background-color: var(--bg-surface) !important;
+  background: var(--bg-surface) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .secao-titulo-cliente,
+[data-theme="dark"] .secao-titulo-produto,
+[data-theme="dark"] .secao-titulo-venda {
+  color: var(--text-primary) !important;
+  border-bottom-color: var(--border-color) !important;
+}
