@@ -18,10 +18,10 @@ function ProdutoForm({ onProdutoCriado }: Props) {
   const [loading, setLoading] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
   
-  // ✨ Novo estado para a imagem em Base64
+  // Novo estado para a imagem em Base64
   const [fotoBase64Atual, setFotoBase64Atual] = useState<string | null>(null)
 
-  // ✨ Carregar produto se estiver em modo de edição
+  // Carregar produto se estiver em modo de edição
   useEffect(() => {
     if (modoEdicao) {
       carregarProduto()
@@ -148,7 +148,7 @@ function ProdutoForm({ onProdutoCriado }: Props) {
         </button>
       </form>
 
-      {/* ✨ Exibe o módulo de foto apenas no Modo Edição */}
+      {/* Exibe o módulo de foto apenas no Modo Edição */}
       {modoEdicao && (
         <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #27272a' }}>
           <FotoUpload
